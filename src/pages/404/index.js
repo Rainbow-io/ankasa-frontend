@@ -1,9 +1,9 @@
 import React from 'react'
 
-const index = () => {
+const Page404 = () => {
   return (
-    <div>index</div>
+    <div>Page404</div>
   )
 }
 
-export default index
+export default Page404
