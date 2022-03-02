@@ -12,7 +12,7 @@ const Footer = () => {
                     <div className="left-foot w-25">
                         <div className="brand d-flex">
                             <img src={Logo} alt="" />
-                            <h2 className='ms-3 mb-4 text-white'>Ankasa</h2>
+                            <h2 className='ms-3 mb-4'>Ankasa</h2>
                         </div>
                             <p className='me-5 text-secondary'>Find your Flight and explore the
                                 world with us. We will take care of the rest</p>
