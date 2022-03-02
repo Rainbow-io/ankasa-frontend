@@ -3,5 +3,91 @@
 }
 
 .auth-cover-app {
+    animation-name: fadeHorizontal;
+    animation-duration: 1s;
+    animation-iteration-count: 1;
+    animation-timing-function: linear;
+    animation-direction: alternate;
     margin: 115px 130px;
 }
+  @keyframes fadeHorizontal {
+    0% {
+        transform: translate(-50%, 0);
+    }
+    100% {
+        transform: translate(0,0);
+    }
+  }
+
+.wrapper-form {
+    margin: 50px 120px;
+}
+
+.login-banner {
+    margin-top: 150px;
+}
+
+.btn-login {
+    background: #2395FF;
+    box-shadow: 0px 8px 10px rgba(35, 149, 255, 0.3);
+    border-radius: 10px;
+    width: 100%;
+    outline: 0;
+    border: 0;
+    border-radius: 12px;
+    padding: 15px;
+    transition: 500ms;
+}
+
+.btn-login:hover {
+    border-radius: 30px;
+    cursor: pointer;
+  }
+
+  .btn-login-signup {
+    background: transparent;
+    border-radius: 10px;
+    width: 100%;
+    outline: 0;
+    border: 1px solid #2395FF;
+    border-radius: 12px;
+    padding: 15px;
+    transition: 500ms;
+}
+
+.btn-login:disabled {
+    border: 1px solid #999999;
+    background-color: #cccccc;
+    cursor: not-allowed;
+    width: 100%;
+    outline: 0;
+    border: 0;
+    border-radius: 12px;
+    padding: 15px;
+    transition: 500ms;
+}
+
+.btn-login-signup:hover {
+    border-radius: 30px;
+    cursor: pointer;
+  }
+
+.googlefb-button {
+    margin: 0px 0px;
+    margin-bottom: 0px;
+    padding: 10px 20px;
+    border: 1px solid #2395FF;
+    box-sizing: border-box;
+    border-radius: 6px;
+    transition: 500ms;
+}
+  .googlefb-button:hover {
+    border-radius: 30px;
+    cursor: pointer;
+  }
+
+  .icon-eyeslash {
+    margin-right: 15px;
+    margin-top: -40px;
+    cursor: pointer;
+  }
