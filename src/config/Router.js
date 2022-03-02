@@ -8,6 +8,7 @@ import Page404 from '../pages/404';
 import Auth from '../pages/Auth/';
 import Login from '../pages/Auth/Login';
 import SignUp from '../pages/Auth/SignUp';
+import ForgotPassword from '../pages/Auth/ForgotPassword';
 
 const Router = () => {
   return (
@@ -16,6 +17,7 @@ const Router = () => {
         <Route path="/auth" element={<Auth />}>
           <Route path="login" element={<Login />} />
           <Route path="sign-up" element={<SignUp />} />
+          <Route path="forgot-password" element={<ForgotPassword />} />
           <Route index element={<Navigate to="/auth/login" />} />
         </Route>
 
