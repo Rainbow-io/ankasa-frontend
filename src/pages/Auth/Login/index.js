@@ -59,6 +59,7 @@ const Login = () => {
     if (Object.keys(resultValidate).length === 0) {
       setFormLoginError(false)
       setLoading(true)
+      console.log(formLogin)
     }
   }
   return (

@@ -7,11 +7,14 @@ import './index.css'
 
 const Auth = () => {
   return (
-    <div className="min-vh-100 d-flex bg-white">
-      <div className="bg-auth-left w-50">
+    <div className="min-vh-100 d-lg-flex bg-white">
+      <div className="bg-auth-left w-50 d-none d-lg-block">
         <img className="text-center auth-cover-app" src={require("../../assets/icons/plane-banner-authpages.svg").default} alt="plane-banner-authpages" />
       </div>
-      <div className="w-50">
+      <div className="w-100 d-sm-block d-lg-none">
+        <Outlet />
+      </div>
+      <div className="w-50 d-none d-lg-block">
         <Outlet />
       </div>
     </div>
