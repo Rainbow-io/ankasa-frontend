@@ -1,9 +1,12 @@
-import React from 'react'
+import React, { Fragment } from 'react'
+import { Outlet } from 'react-router-dom'
 
-const index = () => {
+const Main = () => {
   return (
-    <div>index</div>
+    <Fragment>
+      <Outlet />
+    </Fragment>
   )
 }
 
-export default index
+export default Main
