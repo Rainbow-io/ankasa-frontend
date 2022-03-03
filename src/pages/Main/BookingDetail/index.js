@@ -8,8 +8,8 @@ const BookingDetail = () => {
     return (
         <div className="card-background">
             {/* mobile */}
-            <div className="px-3 mobile-content d-lg-none">
-                <div className="booking-pass">
+            <div className="px-3 py-5 mobile-content d-lg-none">
+                <div className="mb-5 booking-pass">
                     <div className="text-white fw-bold">Booking Pass</div>
                 </div>
                 <div className="bg-white flag-white">
@@ -65,7 +65,11 @@ const BookingDetail = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="px-3 flag-white-lower"></div>
+                    <div className="px-3 flag-white-lower">
+                        <div className="d-flex justify-content-center flag-white-lower-content">
+                            <img src={require("../../../assets/icons/barcode-bookingdetail.svg").default} alt="" />
+                        </div>
+                    </div>
                 </div>
             </div>
             <div className="d-none d-lg-flex justify-content-center">
