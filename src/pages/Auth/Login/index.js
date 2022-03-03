@@ -1,13 +1,20 @@
 // import internal modules
 import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 
 // import external modules
 import Input from '../../../components/base/Input';
 import Button from '../../../components/base/Button';
 import '../index.css';
-import { Link } from 'react-router-dom';
+import { LoginUser } from '../../../redux/actions/login';
 
 const Login = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const loginData = useSelector((state => state.login))
+
   const [formLogin, setFormLogin] = useState({
     email: '',
     password: ''
@@ -59,7 +66,7 @@ const Login = () => {
     if (Object.keys(resultValidate).length === 0) {
       setFormLoginError(false)
       setLoading(true)
-      console.log(formLogin)
+      dispatch((LoginUser(formLogin, setLoading, navigate)))
     }
   }
   return (
@@ -104,7 +111,7 @@ const Login = () => {
 
       </div>
       <div className="text-center">
-      <div className="text-center my-3 text-primary">{formLoginError.email || formLoginError.password}</div>
+      <div className="text-center my-3 text-primary">{formLoginError.email || formLoginError.password || loginData.error}</div>
         <Button isLoading={loading} onClick={handleSubmit} className="btn-login py-3 px-5 mt-3 mb-3 text-white w-100 fw-bold text-center">Sign In</Button>
         <div>Did you forgot your password?</div>
         <Link to={"/auth/forgot-password"} className="mb-5">Tap here for reset</Link>
