@@ -1,0 +1,55 @@
+.searchHeader{
+    height: 20vh;
+    background-color: #2395FF;
+    border-radius: 0px 0px 30px 30px;
+    position: relative;
+    padding-left: 5rem;
+    padding-right: 1rem;
+    align-items: center;
+}
+
+.plane2{
+    height: 17vh;
+    width: 156px;
+    position: absolute;
+    bottom: 0;
+    left: 0;}
+
+.headerLeft{
+    align-items: center;
+    height: 100%;
+}
+
+.plane3{
+    z-index: 3;
+}
+
+.headerLeft1{
+    width: 24rem;
+    z-index: 5;
+}
+
+.changeSearch{
+    cursor: pointer;
+}
+
+.input2, .input1, .input3{
+    background-color: transparent;
+    border: none;
+    outline: transparent;
+    text-align: end;
+    width: 10rem
+}
+
+.input1{
+    text-align: Start;
+}
+
+.con{
+    height: 100vh;
+}
+
+.spantext{
+    font-weight: 100;
+    font-size: 1rem;
+}

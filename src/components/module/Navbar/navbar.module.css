@@ -15,12 +15,6 @@
     font-weight: 600;
 }
 
-.midHeader{
-    width: 40vw;
-    display: flex;
-    justify-content: space-between;
-}
-
 .navbarSearch{
     padding: .5rem 1rem;
     background-color: #F5F5F5;
