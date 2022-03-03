@@ -1,13 +1,20 @@
 // import internal modules
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
 
 // import external modules
+import { SignUpUser } from '../../../redux/actions/signUp';
 import Input from '../../../components/base/Input';
 import Button from '../../../components/base/Button';
 import '../index.css';
 
 const SignUp = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const signUpData = useSelector((state => state.signUp))
+
   const [formSignUp, setFormSignUp] = useState({
     fullname: '',
     email: '',
@@ -64,7 +71,7 @@ const SignUp = () => {
     if (Object.keys(resultValidate).length === 0) {
       setFormSignUpError(false)
       setLoading(true)
-      console.log(formSignUp)
+      dispatch((SignUpUser(formSignUp, setLoading, navigate)))
     }
   }
 
@@ -123,6 +130,7 @@ const SignUp = () => {
 
       </div>
       <div className="text-center my-3 text-primary">{formSignUpError.fullname || formSignUpError.email || formSignUpError.password}</div>
+      <div className="text-center my-3 text-primary">{signUpData.error}</div>
       <Button isLoading={loading} disabled={checked ? false : true} onClick={handleSubmit} className="btn-login py-3 px-5 mt-3 mb-3 text-white w-100 fw-bold text-center">Sign Up</Button>
       <div className="d-flex">
         <Input type="checkbox" id="tos" value="true" onChange={e => handleChecked(e)} />
