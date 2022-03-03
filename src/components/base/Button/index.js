@@ -1,7 +1,10 @@
+// import internal modules
 import React from 'react'
 
-export const index = () => {
+const Button = ({ children, isLoading, ...props }) => {
   return (
-    <div>index</div>
+    <button disabled={isLoading ? true : false} {...props}>{isLoading ? 'Loading...' : children}</button>
   )
 }
+
+export default Button

@@ -1,32 +1,34 @@
 // import internal modules
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
 
 // import external modules
+import { SignUpUser } from '../../../redux/actions/signUp';
 import Input from '../../../components/base/Input';
 import Button from '../../../components/base/Button';
 import '../index.css';
-import { LoginUser } from '../../../redux/actions/login';
 
-const Login = () => {
+const SignUp = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const loginData = useSelector((state => state.login))
+  const signUpData = useSelector((state => state.signUp))
 
-  const [formLogin, setFormLogin] = useState({
+  const [formSignUp, setFormSignUp] = useState({
+    fullname: '',
     email: '',
     password: ''
   })
 
-  const [formLoginError, setFormLoginError] = useState(false);
+  const [formSignUpError, setFormSignUpError] = useState(false);
   const [passHidden, setPassHidden] = useState(true);
   const [loading, setLoading] = useState(false);
+  const [checked, setChecked] = useState(false)
 
   const handleChange = (e) => {
-    setFormLogin({
-      ...formLogin,
+    setFormSignUp({
+      ...formSignUp,
       [e.target.name]: e.target.value
     })
   }
@@ -39,34 +41,44 @@ const Login = () => {
     }
   }
 
-  const validateLogin = (values) => {
+  const validateSignUp = (values) => {
     const errors = {};
     const regex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
+    if (!values.fullname) {
+      errors.fullname = "Full name required";
+    }
     if (!values.email) {
-      errors.email = "Email or Password Invalid";
+      errors.email = "Email is required";
     } else if (!regex.test(values.email)) {
-      errors.email = "Email or Password Invalid";
+      errors.email = "Email address invalid";
     }
     if (!values.password) {
-      errors.password = "Email or Password Invalid";
+      errors.password = "Password is required";
     } else if (values.password.length < 6) {
-      errors.password = "Email or Password Invalid";
+      errors.password = "Password at least 6 character";
     }
     return errors;
   }
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const resultValidate = validateLogin(formLogin);
-    setFormLoginError(resultValidate);
+    const resultValidate = validateSignUp(formSignUp);
+    setFormSignUpError(resultValidate);
     handleClick(resultValidate);
   }
 
   const handleClick = (resultValidate) => {
     if (Object.keys(resultValidate).length === 0) {
-      setFormLoginError(false)
+      setFormSignUpError(false)
       setLoading(true)
-      dispatch((LoginUser(formLogin, setLoading, navigate)))
+      dispatch((SignUpUser(formSignUp, setLoading, navigate)))
+    }
+  }
+
+  const handleChecked = (e) => {
+    setChecked(e.target.checked)
+    if (checked === true) {
+      setFormSignUpError(false)
     }
   }
   return (
@@ -75,14 +87,21 @@ const Login = () => {
         <img src={require("../../../assets/icons/plane-mascot-authpages.svg").default} alt="plane-mascot-authpages" />
         <div className="fw-bold fs-4 ms-2">Ankasa</div>
       </Link>
-      <div className="fw-bold fs-4 login-banner">Login</div>
+      <div className="fw-bold fs-4 login-banner">Register</div>
       <div className="mt-5 form-wrapper">
+        <Input
+          type="text"
+          name="fullname"
+          placeholder="Full Name"
+          onChange={handleChange}
+          value={formSignUp.fullname}
+          className="py-3 px-3 row border-1 my-3 bg-transparent border-0 border-bottom w-100" />
         <Input
           type="email"
           name="email"
-          placeholder="Username or Email"
+          placeholder="Email"
           onChange={handleChange}
-          value={formLogin.email}
+          value={formSignUp.email}
           className="py-3 px-3 row border-1 my-3 bg-transparent border-0 border-bottom w-100" />
         {passHidden === true ? (
           <>
@@ -91,7 +110,7 @@ const Login = () => {
               name="password"
               placeholder="Password"
               onChange={handleChange}
-              value={formLogin.password}
+              value={formSignUp.password}
               className="py-3 px-3 row border-1 my-3 bg-transparent border-0 border-bottom w-100" />
             <img onClick={() => handleHiddenPass()} className="position-relative float-end icon-eyeslash" src={require("../../../assets/icons/eye-slash-loginpage.svg").default} alt="icon-eyeslash-loginpage" />
           </>
@@ -103,35 +122,27 @@ const Login = () => {
               name="password"
               placeholder="Password"
               onChange={handleChange}
-              value={formLogin.password}
+              value={formSignUp.password}
               className="py-3 px-3 row border-1 my-3 bg-transparent border-0 border-bottom w-100" />
             <img onClick={() => handleHiddenPass()} className="position-relative float-end icon-eyeslash" src={require("../../../assets/icons/eye-loginpage.svg").default} alt="icon-eyeslash-loginpage" />
           </>
         )}
 
       </div>
-      <div className="text-center">
-      <div className="text-center my-3 text-primary">{formLoginError.email || formLoginError.password || loginData.error}</div>
-        <Button isLoading={loading} onClick={handleSubmit} className="btn-login py-3 px-5 mt-3 mb-3 text-white w-100 fw-bold text-center">Sign In</Button>
-        <div>Did you forgot your password?</div>
-        <Link to={"/auth/forgot-password"} className="mb-5">Tap here for reset</Link>
-        <hr className="mt-5" />
-        <div className="d-flex flex-column">
-        <div className="align-self-center">Don't have an account?</div>
-        <Link to={"/auth/sign-up"} className="btn-login-signup py-3 px-5 mt-3 mb-3 text-primary w-100 fw-bold text-center text-decoration-none">Sign Up</Link>
+      <div className="text-center my-3 text-primary">{formSignUpError.fullname || formSignUpError.email || formSignUpError.password}</div>
+      <div className="text-center my-3 text-primary">{signUpData.error}</div>
+      <Button isLoading={loading} disabled={checked ? false : true} onClick={handleSubmit} className="btn-login py-3 px-5 mt-3 mb-3 text-white w-100 fw-bold text-center">Sign Up</Button>
+      <div className="d-flex">
+        <Input type="checkbox" id="tos" value="true" onChange={e => handleChecked(e)} />
+        <div className="ms-3">Accept terms and condition</div>
       </div>
-        {/* <div className="d-flex justify-content-center mt-3">
-          <div className="me-3 googlefb-button">
-            <img src={require("../../../assets/icons/google-loginpage.svg").default} alt="google-loginpage" />
-          </div>
-          <div className="ms-3 googlefb-button">
-            <img src={require("../../../assets/icons/facebook-loginpage.svg").default} alt="google-loginpage" />
-          </div>
-        </div> */}
+      <hr className="mt-5" />
+      <div className="d-flex flex-column">
+        <div className="align-self-center">Already have an account?</div>
+        <Link to={"/auth/login"} className="btn-login-signup py-3 px-5 mt-3 mb-3 text-primary w-100 fw-bold text-center text-decoration-none">Sign In</Link>
       </div>
-      {/* continues */}
     </div>
   )
 }
 
-export default Login
+export default SignUp
