@@ -4,10 +4,10 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 // import external modules
 import Auth from '../pages/Auth/';
-import Login from '../pages/Auth/Login'
-import FindTicket from '../pages/FindTicket';
-import FlightDetail from '../pages/FlightDetail';
+import Login from '../pages/Auth/Login';
 
+import Main from '../pages/Main';
+import BookingDetail from '../pages/Main/BookingDetail'
 const Router = () => {
   return (
     <BrowserRouter>
@@ -15,8 +15,10 @@ const Router = () => {
         <Route path="/auth" element={<Auth />}>
           <Route path="login" element={<Login />} />
         </Route>
-        <Route path="find-ticket" element={<FindTicket/>} />
-        <Route path="flight-detail" element={<FlightDetail/>} />
+
+        <Route path="/main" element={<Main />}>
+          <Route path="booking-detail" element={<BookingDetail />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   )
