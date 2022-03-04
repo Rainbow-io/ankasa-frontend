@@ -25,7 +25,7 @@ const FindTicket = () => {
         arrival: 'Medan',
         duration: "3hrs 11mins",
         price: 214.00,
-        facilities: ['meal', 'wifi'],
+        facilities: 'meal, luggage, wifi',
         arrival_time: '13.30',
         arrival_type: 'mid-late',
         departure_time: '10.19',
@@ -40,7 +40,7 @@ const FindTicket = () => {
         arrival: 'Mimika',
         duration: "3hrs 11mins",
         price: 210.00,
-        facilities: ['meal', 'luggage'],
+        facilities: 'meal, luggage',
         arrival_time: '13.30',
         arrival_type: 'mid-late',
         departure_time: '10.19',
@@ -441,29 +441,29 @@ const FindTicket = () => {
                                                 <p className={`w-75 ${styles.airlines} text-secondary`}>{ticket.airlines}</p>
                                             </div>
                                             <div className="pt-lg-5 d-flex justify-content-between align-items-center w-100">
-                                                <div className="left-section d-flex justify-content-between">
+                                                <div className={`${styles.leftSection} d-flex justify-content-between`}>
                                                     <div className="departure-section d-flex flex-column align-items-start">
                                                         <h4 className="text-secondary">{ticket.departure}</h4>
                                                         <p className="text-secondary">{ticket.departure_time}</p>
                                                     </div>
-                                                    <img src={PlaneTix} className='d-flex align-items-start mx-3' alt="" />
+                                                    <img src={PlaneTix} className='d-flex align-items-start' alt="" />
                                                     <div className="arrival-section d-flex flex-column align-items-start">
                                                         <h4 className="text-secondary">{ticket.arrival}</h4>
                                                         <p className="text-secondary">{ticket.arrival_time}</p>
                                                     </div>
                                                 </div>
-                                                <div className="mid-left-section d-flex flex-column align-items-center me-3">
+                                                <div className={`${styles.midLeft} d-flex flex-column justify-content-center align-items-center`}>
                                                     <h5 className="text-secondary">{ticket.duration}</h5>
                                                     <p className="text-secondary">({ticket.transit})</p>
                                                 </div>
-                                                <div className="mid-mid-section d-flex align-items-center me-2">
-                                                    {ticket.facilities.map((facility) => {
+                                                <div className={`${styles.midMid} d-flex align-items-center`}>
+                                                    {ticket.facilities.split(', ').map((facility) => {
                                                         return (
                                                             (facility === 'meal' && <img className='mx-3' src={Meal} alt=''/>) || (facility === 'wifi' && <img className='mx-3' src={Wifi} alt=''/>) || (facility === 'luggage' && <img className='mx-3' src={Luggage} alt=''/>)
                                                         )
                                                     })}
                                                 </div>
-                                                <div className="mid-right-section d-flex align-items-center me-2">
+                                                <div className={`${styles.midMid} d-flex align-items-center justify-content-center`}>
                                                     <p className={`text-primary ${styles.airlines}`}>${ticket.price}.00
                                                     <span className="text-secondary ms-1">
                                                         /pax
