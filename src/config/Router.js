@@ -11,7 +11,9 @@ import SignUp from '../pages/Auth/SignUp';
 import ForgotPassword from '../pages/Auth/ForgotPassword';
 
 import Main from '../pages/Main';
-import MyBooking from '../pages/Main/MyBooking'
+import MyBooking from '../pages/Main/MyBooking';
+import Profile from '../pages/Main/Profile';
+
 const Router = () => {
   return (
     <BrowserRouter>
@@ -25,6 +27,7 @@ const Router = () => {
 
         <Route path="/main" element={<Main />}>
           <Route path="my-booking" element={<MyBooking />} />
+          <Route path="profile" element={<Profile />} />
         </Route>
 
 
