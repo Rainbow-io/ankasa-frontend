@@ -7,7 +7,6 @@
     padding-right: 1rem;
     align-items: center;
 }
-
 .plane2{
     height: 17vh;
     width: 156px;
@@ -85,3 +84,35 @@
 .midLeft , .midMid{
     width: 20%;
 }
+
+.paginationBtns {
+    margin-top: 1rem;
+      height: 2rem;
+      list-style: none;
+      display: flex;
+      justify-content: center;
+    }
+    
+    .paginationBtns a {
+      padding: 10px;
+      margin: 8px;
+      border-radius: 5px;
+      border: 1px solid #2395FF;
+      color: #2395FF;
+      cursor: pointer;
+    }
+    
+    .paginationBtns a:hover {
+      color: white;
+      background-color: #2395FF;
+    }
+    
+    .activePagination a {
+      color: white;
+      background-color: #2395FF;
+    }
+    
+    .disabledPagination a {
+      color: rgb(192, 186, 186);
+      background-color: rgb(136, 132, 132);
+    }

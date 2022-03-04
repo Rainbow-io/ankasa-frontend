@@ -9,7 +9,7 @@ import Auth from '../pages/Auth/';
 import Login from '../pages/Auth/Login';
 import SignUp from '../pages/Auth/SignUp';
 import ForgotPassword from '../pages/Auth/ForgotPassword';
-
+import FindTicket from '../pages/FindTicket'
 import Main from '../pages/Main';
 import BookingDetail from '../pages/Main/BookingDetail';
 
@@ -26,6 +26,7 @@ const Router = () => {
 
         <Route path="/main" element={<Main />}>
           <Route path="booking-detail" element={<BookingDetail />} />
+          <Route path="find-ticket" element={<FindTicket/>}></Route>
         </Route>
 
 

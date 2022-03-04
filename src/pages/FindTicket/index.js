@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react'
+import React, { Fragment, useEffect, useState } from 'react'
 import Navbar from '../../components/module/Navbar'
 import styles from './findtix.module.css'
 import Plane2 from '../../assets/plane2.svg'
@@ -9,89 +9,139 @@ import Luggage from '../../assets/luggage.svg'
 import Wifi from '../../assets/wifi.svg'
 import Input from '../../components/module/Input'
 import Footer from '../../components/module/Footer'
+import ReactPaginate from 'react-paginate'
+import { useDispatch, useSelector } from 'react-redux';
+import { getFlights } from '../../redux/actions/flights'
 
 const FindTicket = () => {
 
-    const [showRadio1, setShowRadio1] = useState(false)
-    const [transit, setTransit] = useState([])
-    const [showRadio2, setShowRadio2] = useState(false)
-    const [showRadio3, setShowRadio3] = useState(false)
-    const [showRadio4, setShowRadio4] = useState(false)
-    const [showRadio5, setShowRadio5] = useState(false)
-    const tickets = [{
-        id: 1,
-        airlines: 'Garuda Indonesia',
-        logo: 'https://th.bing.com/th/id/R.64091e365c3ae82a67f0f282fb2a50b0?rik=dLJZMJaW3l%2bErQ&riu=http%3a%2f%2ftravelpro.nl%2fwp-content%2fuploads%2flogo1.jpg&ehk=eqT%2bFxB%2btJPggHp6R9p0S%2fBHoyICm6d04Hj8iHh7BHE%3d&risl=&pid=ImgRaw&r=0',
-        departure: 'Jakarta',
-        arrival: 'Medan',
-        duration: "3hrs 11mins",
-        price: 214.00,
-        facilities: 'meal, luggage, wifi',
-        arrival_time: '13.30',
-        arrival_type: 'mid-late',
-        departure_time: '10.19',
-        departure_type: 'mid-early',
-        transit: '1 transit'
-    },
-    {
-        id: 2,
-        airlines: 'Garuda Indonesia',
-        logo: 'https://th.bing.com/th/id/R.64091e365c3ae82a67f0f282fb2a50b0?rik=dLJZMJaW3l%2bErQ&riu=http%3a%2f%2ftravelpro.nl%2fwp-content%2fuploads%2flogo1.jpg&ehk=eqT%2bFxB%2btJPggHp6R9p0S%2fBHoyICm6d04Hj8iHh7BHE%3d&risl=&pid=ImgRaw&r=0',
-        departure: 'Pekanbaru',
-        arrival: 'Mimika',
-        duration: "3hrs 11mins",
-        price: 210.00,
-        facilities: 'meal, luggage',
-        arrival_time: '13.30',
-        arrival_type: 'mid-late',
-        departure_time: '10.19',
-        departure_type: 'mid-early',
-        transit: 'direct'
+    const [showRadio1, setShowRadio1] = useState(true)
+    const [facilities, setFacilities] = useState([])
+    const [airlines, setAirlines] = useState([])
+    const [showRadio2, setShowRadio2] = useState(true)
+    const [showRadio3, setShowRadio3] = useState(true)
+    const [showRadio4, setShowRadio4] = useState(true)
+    const [showRadio5, setShowRadio5] = useState(true)
+    const [pageNumber, setPageNumber] = useState(0)
+    const dataPerPage = 4
+    const pagesVisited = pageNumber * dataPerPage
+
+    const [form, setForm] = useState({
+        departure: '',
+        arrival: '',
+        class: '',
+        qty: 0
+    })
+
+    const dispatch = useDispatch()
+    const tickets = useSelector((state) => state.Flights)
+    console.log(tickets);
+    //get all tickets
+    useEffect(() => {
+        dispatch(getFlights())
+    }, [])
+
+    //pagination config
+    const displayTickets = tickets.data.slice(pagesVisited, pagesVisited + dataPerPage).map((ticket, index) => {
+        return (
+            <div className={`w-100 ${styles.ticket} bg-white mb-3`}
+                key={index}>
+                <div className="wrapper w-100 h-100 p-3">
+                    <div className="w-50 d-flex justify-content-between align-items-center">
+                        <img src={ticket.logo} className={`${styles.airlineLogo}`} alt="" />
+                        <p className={`w-75 ${styles.airlines} text-secondary`}>{ticket.airlines}</p>
+                    </div>
+                    <div className="pt-lg-5 d-flex justify-content-between align-items-center w-100">
+                        <div className={`${styles.leftSection} d-flex justify-content-between`}>
+                            <div className="departure-section d-flex flex-column align-items-start">
+                                <h5 className="text-secondary">{ticket.departure}</h5>
+                                <p className="text-secondary">{ticket.depature_time}</p>
+                            </div>
+                            <img src={PlaneTix} className='d-flex align-items-start' alt="" />
+                            <div className="arrival-section d-flex flex-column align-items-start">
+                                <h5 className="text-secondary">{ticket.arrival}</h5>
+                                <p className="text-secondary">{ticket.arrival_time}</p>
+                            </div>
+                        </div>
+                        <div className={`${styles.midLeft} d-flex flex-column justify-content-center align-items-center`}>
+                            <h6 className="text-secondary">{ticket.duration}</h6>
+                            <p className="text-secondary">({ticket.transit})</p>
+                        </div>
+                        <div className={`${styles.midMid} d-flex align-items-center`}>
+                            {ticket.facilities.split(', ').map((facility) => {
+                                return (
+                                    (facility === 'meal' && <img className='mx-3' src={Meal} alt='' />) || (facility === 'wifi' && <img className='mx-3' src={Wifi} alt='' />) || (facility === 'luggage' && <img className='mx-3' src={Luggage} alt='' />)
+                                )
+                            })}
+                        </div>
+                        <div className={`${styles.midMid} d-flex align-items-center justify-content-center`}>
+                            <p className={`text-primary ${styles.airlines}`}>${ticket.price}.00
+                                <span className="text-secondary ms-1">
+                                    /pax
+                                </span>
+                            </p>
+                        </div>
+                        <div className={`bg-primary text-white ${styles.button}`}>Select</div>
+
+                    </div>
+                </div>
+            </div>
+
+        )
+    })
+    const handlePageChange = ({ selected }) => {
+        setPageNumber(selected)
     }
-]
+
+    //handle form
+    const handleChange = (e) => {
+        setForm({
+            ...form,
+            [e.target.name]: e.target.value
+        })
+        console.log(form);
+    }
+
     //transit
     const handleRadioTransit = (e) => {         //masih ngaco logicnya
-        if (e.target.checked) {
-            transit.push((e.target.value));
-        } else {
-            setTransit([])
-        }
-        console.log(transit);
+        console.log(e.target.value);
     }
-    const handleDropdownTransit = () => {
-        setShowRadio1(!showRadio1)
-    }
+    const handleDropdownTransit = () => setShowRadio1(!showRadio1)
 
     //facilities
     const handleRadioFacilities = (e) => {
-        console.log(e.target.value);
+        if (e.target.checked) {
+            facilities.push((e.target.value));
+        } else {
+            setFacilities([])
+        }
+        console.log(facilities);
     }
     const handleDropdownFacilities = () => {
         setShowRadio2(!showRadio2)
     }
 
     //departure
-    const handleDropdownDeparture = () => {
-        setShowRadio3(!showRadio3)
-    }
+    const handleDropdownDeparture = () => setShowRadio3(!showRadio3)
     const handleRadioDeparture = (e) => {
         console.log(e.target.value, "departure");
     }
 
     //arrival
-    const handleDropdownArrival = () => {
-        setShowRadio4(!showRadio4)
-    }
+    const handleDropdownArrival = () => setShowRadio4(!showRadio4)
     const handleRadioArrival = (e) => {
         console.log(e.target.value, "arrival");
     }
 
     //airlines
-    const handleDropdownAirlines = () => {
-        setShowRadio5(!showRadio5)
-    }
+    const handleDropdownAirlines = () => setShowRadio5(!showRadio5)
     const handleRadioAirlines = (e) => {
-        console.log(e.target.value);
+        if (e.target.checked) {
+            airlines.push((e.target.value));
+        } else {
+            setAirlines([])
+        }
+        console.log(airlines);
     }
 
     return (
@@ -108,26 +158,48 @@ const FindTicket = () => {
                                 <p className={`${styles.p1} text-white`}>To</p>
                             </div>
                             <div className={`d-flex justify-content-between w-100 mb-1`}>
-                                <Input className={`text-white ${styles.input1}`} placeholder="Medan" />
+                                <Input
+                                    className={`text-white ${styles.input1}`}
+                                    placeholder="Departure"
+                                    name="departure"
+                                    value={form.departure}
+                                    onChange={handleChange}
+                                />
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left-right text-white" viewBox="0 0 16 16">
                                     <path fill-rule="evenodd" d="M1 11.5a.5.5 0 0 0 .5.5h11.793l-3.147 3.146a.5.5 0 0 0 .708.708l4-4a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 11H1.5a.5.5 0 0 0-.5.5zm14-7a.5.5 0 0 1-.5.5H2.707l3.147 3.146a.5.5 0 1 1-.708.708l-4-4a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 4H14.5a.5.5 0 0 1 .5.5z" />
                                 </svg>
-                                <Input className={`text-white ${styles.input2}`} placeholder="Jakarta" />
+                                <Input
+                                    className={`text-white ${styles.input2}`}
+                                    placeholder="Arrival"
+                                    name="arrival"
+                                    value={form.arrival}
+                                    onChange={handleChange}
+                                />
                             </div>
                             <div className={`d-flex justify-content-between w-100`}>
                                 <Input
                                     className={`text-white mt-0 mb-3 ${styles.input1}`}
-                                    placeholder="Quantity"
                                     type="date"
                                 />
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot text-white" viewBox="0 0 16 16">
                                     <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z" />
                                 </svg>
-                                <Input className={`text-white mt-0 mb-3 ${styles.input1} ${styles.inputLower}`} placeholder="Quantity" />
+                                <Input
+                                    className={`text-white mt-0 mb-3 ${styles.input1} ${styles.inputLower}`}
+                                    placeholder="Quantity"
+                                    name="qty"
+                                    value={form.qty}
+                                    onChange={handleChange} />
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-dot text-white" viewBox="0 0 16 16">
                                     <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z" />
                                 </svg>
-                                <Input className={`text-white mt-0 mb-3 ${styles.input2} ${styles.inputLower}`} placeholder="Flight Class" />
+                                <Input
+                                    className={`text-white mt-0 mb-3 ${styles.input2} ${styles.inputLower}`}
+                                    placeholder="Class"
+                                    name="class"
+                                    value={form.class}
+                                    onChange={handleChange}
+                                />
                             </div>
                         </div>
                     </div>
@@ -163,7 +235,7 @@ const FindTicket = () => {
                                         <div className=' d-flex justify-content-between align-items-center my-3'>
                                             Direct
                                             <Input
-                                                type='checkbox'
+                                                type='radio'
                                                 name='transit'
                                                 value='direct'
                                                 className={`${styles.radiobox}`}
@@ -173,7 +245,7 @@ const FindTicket = () => {
                                         <div className=' d-flex justify-content-between align-items-center my-3'>
                                             Transit
                                             <Input
-                                                type='checkbox'
+                                                type='radio'
                                                 name='transit'
                                                 value='transit'
                                                 className={`${styles.radiobox}`}
@@ -183,7 +255,7 @@ const FindTicket = () => {
                                         <div className=' d-flex justify-content-between align-items-center my-3'>
                                             Transit 2+
                                             <Input
-                                                type='checkbox'
+                                                type='radio'
                                                 name='transit'
                                                 value='transit 2+'
                                                 className={`${styles.radiobox}`}
@@ -265,7 +337,7 @@ const FindTicket = () => {
                                         <div className=' d-flex justify-content-between align-items-center my-3'>
                                             00.00 - 06.00
                                             <Input
-                                                type='checkbox'
+                                                type='radio'
                                                 name='departure'
                                                 value='early'
                                                 className={`${styles.radiobox}`}
@@ -275,7 +347,7 @@ const FindTicket = () => {
                                         <div className=' d-flex justify-content-between align-items-center my-3'>
                                             06.00 - 12.00
                                             <Input
-                                                type='checkbox'
+                                                type='radio'
                                                 name='departure'
                                                 value='mid-early'
                                                 className={`${styles.radiobox}`}
@@ -285,7 +357,7 @@ const FindTicket = () => {
                                         <div className=' d-flex justify-content-between align-items-center my-3'>
                                             12.00 - 18.00
                                             <Input
-                                                type='checkbox'
+                                                type='radio'
                                                 name='departure'
                                                 value='mid-late'
                                                 className={`${styles.radiobox}`}
@@ -295,7 +367,7 @@ const FindTicket = () => {
                                         <div className=' d-flex justify-content-between align-items-center my-3'>
                                             18.00 - 24.00
                                             <Input
-                                                type='checkbox'
+                                                type='radio'
                                                 name='departure'
                                                 value='late'
                                                 className={`${styles.radiobox}`}
@@ -326,7 +398,7 @@ const FindTicket = () => {
                                         <div className=' d-flex justify-content-between align-items-center my-3'>
                                             00.00 - 06.00
                                             <Input
-                                                type='checkbox'
+                                                type='radio'
                                                 name='arrival'
                                                 value='early'
                                                 className={`${styles.radiobox}`}
@@ -336,7 +408,7 @@ const FindTicket = () => {
                                         <div className=' d-flex justify-content-between align-items-center my-3'>
                                             06.00 - 12.00
                                             <Input
-                                                type='checkbox'
+                                                type='radio'
                                                 name='arrival'
                                                 value='mid-early'
                                                 className={`${styles.radiobox}`}
@@ -346,7 +418,7 @@ const FindTicket = () => {
                                         <div className=' d-flex justify-content-between align-items-center my-3'>
                                             12.00 - 18.00
                                             <Input
-                                                type='checkbox'
+                                                type='radio'
                                                 name='arrival'
                                                 value='mid-late'
                                                 className={`${styles.radiobox}`}
@@ -356,7 +428,7 @@ const FindTicket = () => {
                                         <div className=' d-flex justify-content-between align-items-center my-3'>
                                             18.00 - 24.00
                                             <Input
-                                                type='checkbox'
+                                                type='radio'
                                                 name='arrival'
                                                 value='late'
                                                 className={`${styles.radiobox}`}
@@ -423,7 +495,7 @@ const FindTicket = () => {
                     <div className="w-75 d-flex flex-column">
                         <div className='d-flex w-100 justify-content-between align-items-center my-3'>
                             <h4>Select Ticket
-                                <span className={`text-secondary ${styles.spantext}`}> (6 flight found)
+                                <span className={`text-secondary ${styles.spantext}`}> ({tickets.data.length} flight found)
                                 </span></h4>
                             <div className='d-flex'>
                                 <h6 className='me-2'>Sort by</h6>
@@ -432,58 +504,24 @@ const FindTicket = () => {
                                 </svg>
                             </div>
                         </div>
-                        {/* mapping ticket here */}{
-                            tickets.map((ticket) => {
-                                return (
-                                    <div className={`w-100 ${styles.ticket} bg-white mb-3`}>
-                                        <div className="wrapper w-100 h-100 p-3">
-                                            <div className="w-50 d-flex justify-content-between align-items-center">
-                                                <img src={ticket.logo} className={`${styles.airlineLogo}`} alt="" />
-                                                <p className={`w-75 ${styles.airlines} text-secondary`}>{ticket.airlines}</p>
-                                            </div>
-                                            <div className="pt-lg-5 d-flex justify-content-between align-items-center w-100">
-                                                <div className={`${styles.leftSection} d-flex justify-content-between`}>
-                                                    <div className="departure-section d-flex flex-column align-items-start">
-                                                        <h4 className="text-secondary">{ticket.departure}</h4>
-                                                        <p className="text-secondary">{ticket.departure_time}</p>
-                                                    </div>
-                                                    <img src={PlaneTix} className='d-flex align-items-start' alt="" />
-                                                    <div className="arrival-section d-flex flex-column align-items-start">
-                                                        <h4 className="text-secondary">{ticket.arrival}</h4>
-                                                        <p className="text-secondary">{ticket.arrival_time}</p>
-                                                    </div>
-                                                </div>
-                                                <div className={`${styles.midLeft} d-flex flex-column justify-content-center align-items-center`}>
-                                                    <h5 className="text-secondary">{ticket.duration}</h5>
-                                                    <p className="text-secondary">({ticket.transit})</p>
-                                                </div>
-                                                <div className={`${styles.midMid} d-flex align-items-center`}>
-                                                    {ticket.facilities.split(', ').map((facility) => {
-                                                        return (
-                                                            (facility === 'meal' && <img className='mx-3' src={Meal} alt=''/>) || (facility === 'wifi' && <img className='mx-3' src={Wifi} alt=''/>) || (facility === 'luggage' && <img className='mx-3' src={Luggage} alt=''/>)
-                                                        )
-                                                    })}
-                                                </div>
-                                                <div className={`${styles.midMid} d-flex align-items-center justify-content-center`}>
-                                                    <p className={`text-primary ${styles.airlines}`}>${ticket.price}.00
-                                                    <span className="text-secondary ms-1">
-                                                        /pax
-                                                    </span>
-                                                    </p>
-                                                </div>
-                                                <div className={`bg-primary text-white ${styles.button}`}>Select</div>
+                        {displayTickets}
+                        <ReactPaginate
+                            previousLabel={"Previous"}
+                            nextLabel={"Next"}
+                            pageCount={Math.ceil(tickets.data.length / dataPerPage)}
+                            onPageChange={handlePageChange}
+                            containerClassName={`${styles.paginationBtns}`}
+                            previousLinkClassName={`{styles.prevBtn}`}
+                            nextLinkClassName={`${styles.nextBtn}`}
+                            disabledClassName={`${styles.disabledPagination}`}
+                            activeClassName={`${styles.activePagination}`}
+                        />
 
-                                            </div>
-                                        </div>
-                                    </div>
-                                )
-                            })
-                        }
                     </div>
                 </div>
 
             </main>
-            <Footer/>
+            <Footer />
         </Fragment>
     )
 }
