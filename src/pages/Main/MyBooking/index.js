@@ -8,7 +8,7 @@ const MyBooking = () => {
     return (
         <div className="body-background">
             <div className="d-flex px-5 py-5 wrapper-content">
-                <div className="bg-white profile-left">
+                <div className="d-none d-lg-block bg-white profile-left">
                     <div className="px-3 py-5 d-flex flex-column align-items-center profile-left-content">
                         <div className="content-upper text-center">
                             <div className="photo">
@@ -79,7 +79,7 @@ const MyBooking = () => {
                         </div>
                     </div>
                 </div>
-                <div className="profile-right ms-3 w-100">
+                <div className="d-none d-md-block profile-right ms-3 w-100">
                     <div className="bg-white profile-right-upper">
                         <div className="py-3 px-3 profile-right-upper-content">
                             <div className="mybooking mb-3">
@@ -147,7 +147,67 @@ const MyBooking = () => {
                             </div>
                         </div>
                     </div>
+                </div>
+                {/* Mobile */}
+                <div className="d-md-none w-100">
+                    <div className="content-upper">
+                        <div className="my-booking-blue">
+                            <div className="text-primary">My Booking</div>
+                        </div>
+                        <div className="d-flex justify-content-between my-booking-black">
+                            <div className="fw-bold">My Booking</div>
+                            <div className="fw-bold text-primary">Order History</div>
+                        </div>
+                    </div>
+                    <div className="bg-white content-middle mt-3">
+                        <div className="px-3 py-3 inner-box-content">
+                            <div className="content-upper">
+                                <div className="time-detail">
+                                    <div>Monday, 20 July 20 - 12:33</div>
+                                </div>
+                                <div className="d-flex py-3 destination-detail">
+                                    <div className="fw-bold">IDN</div>
+                                    <img className="px-3" src={require("../../../assets/icons/to-plane-mybooking.svg").default} alt="" />
+                                    <div className="fw-bold">JPN</div>
+                                </div>
+                                <div className="airline-detail">
+                                    <div className="text-muted">Garuda Indonesia, AB-221</div>
+                                </div>
+                            </div>
+                            <hr />
+                            <div className="content-lower">
+                                <div className="d-flex justify-content-between status-button">
+                                    <div className="pt-1 text-muted fw-bold">Status</div>
+                                    <div className="px-3 py-2 btn-status-payment fw-bold text-white">Waiting For Payment</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
+                    <div className="bg-white content-middle mt-3">
+                        <div className="px-3 py-3 inner-box-content">
+                            <div className="content-upper">
+                                <div className="time-detail">
+                                    <div>Monday, 20 July 20 - 12:33</div>
+                                </div>
+                                <div className="d-flex py-3 destination-detail">
+                                    <div className="fw-bold">IDN</div>
+                                    <img className="px-3" src={require("../../../assets/icons/to-plane-mybooking.svg").default} alt="" />
+                                    <div className="fw-bold">JPN</div>
+                                </div>
+                                <div className="airline-detail">
+                                    <div className="text-muted">Garuda Indonesia, AB-221</div>
+                                </div>
+                            </div>
+                            <hr />
+                            <div className="content-lower">
+                                <div className="d-flex justify-content-between status-button">
+                                    <div className="pt-1 text-muted fw-bold">Status</div>
+                                    <div className="px-3 py-2 btn-status-issued fw-bold text-white">Eticket Issued</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
