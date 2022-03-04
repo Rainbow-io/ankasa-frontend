@@ -1,0 +1,39 @@
+.body-background {
+    background: #F5F6FA;
+}
+
+.profile-left, .profile-right-upper, .profile-right-lower {
+    border-radius: 15px;
+}
+.profile-left {
+    width: 25%;
+}
+
+.content-middle {
+    width: 100%;
+}
+
+.select-photo-button {
+    border: 1px solid #2395FF;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.bluebox {
+    background: #2395FF;
+    box-shadow: 0px 8px 25px rgba(35, 149, 255, 0.49);
+    border-radius: 10px;
+}
+
+.logout, .settings, .my-review, .profile, .view-details, .order-history, .add {
+    cursor: pointer;
+}
+
+.btn-status-payment {
+    background: #FF7F23;
+    border-radius: 6px;
+}
+.btn-status-issued {
+    background: #4FCF4D;
+    border-radius: 6px;
+}
