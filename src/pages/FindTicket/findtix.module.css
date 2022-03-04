@@ -45,11 +45,35 @@
     text-align: Start;
 }
 
-.con{
-    height: 100vh;
-}
-
 .spantext{
     font-weight: 100;
     font-size: 1rem;
+}
+
+.inputLower{
+    width: 5rem;
+}
+
+.filter, .ticket{
+    border-radius: 2rem;
+}
+
+.ticket{
+    height: 15rem;
+}
+
+.airlineLogo{
+    width: 6rem;
+    height: 4rem;
+}
+
+.airlines{
+    font-weight: 600;
+}
+
+.button{
+    padding: 1rem 3rem;
+    box-shadow: 0px 8px 10px rgb(35 149 255 / 30%);
+    border-radius: .75rem;
+    cursor: pointer;
 }
