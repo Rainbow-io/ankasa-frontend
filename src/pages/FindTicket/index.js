@@ -8,6 +8,7 @@ import Meal from '../../assets/burger.svg'
 import Luggage from '../../assets/luggage.svg'
 import Wifi from '../../assets/wifi.svg'
 import Input from '../../components/module/Input'
+import Footer from '../../components/module/Footer'
 
 const FindTicket = () => {
 
@@ -482,6 +483,7 @@ const FindTicket = () => {
                 </div>
 
             </main>
+            <Footer/>
         </Fragment>
     )
 }
