@@ -58,19 +58,19 @@ const MyBooking = () => {
                                 </div>
                                 <div>Profile</div>
                             </div>
-                            <div class="my-review d-flex">
+                            <div className="my-review d-flex">
                                 <div className="logo-myreview me-3">
                                     <img src={require("../../../assets/icons/my-review-bookingdetail.svg").default} alt="" />
                                 </div>
                                 <div>My Review</div>
                             </div>
-                            <div class="settings d-flex my-3">
+                            <div className="settings d-flex my-3">
                                 <div className="logo-settings me-3">
                                     <img src={require("../../../assets/icons/settings-mybooking.svg").default} alt="" />
                                 </div>
                                 <div>Settings</div>
                             </div>
-                            <div class="logout d-flex">
+                            <div className="logout d-flex">
                                 <div className="logo-logout me-3">
                                     <img src={require("../../../assets/icons/logout-mybooking.svg").default} alt="" />
                                 </div>
@@ -96,7 +96,7 @@ const MyBooking = () => {
                         </div>
                     </div>
 
-                    <div class="my-3 bg-white profile-right-lower">
+                    <div className="my-3 bg-white profile-right-lower">
                         <div className="px-3 py-3 profile-right-middle-content">
                             <div className="upper">
                                 <div className="time-section">
@@ -122,7 +122,7 @@ const MyBooking = () => {
                         </div>
                     </div>
 
-                    <div class="my-3 bg-white profile-right-lower">
+                    <div className="my-3 bg-white profile-right-lower">
                         <div className="px-3 py-3 profile-right-middle-content">
                             <div className="upper">
                                 <div className="time-section">
