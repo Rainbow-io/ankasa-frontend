@@ -1,9 +1,11 @@
-import React from 'react'
+// import internal modules
+import { combineReducers } from "redux";
 
-const index = () => {
-  return (
-    <div>index</div>
-  )
-}
+// import external modules
+import login from './login';
 
-export default index
+const rootReducers = combineReducers({
+  login,
+})
+
+export default rootReducers

@@ -1,9 +1,7 @@
-import React from 'react'
+import {createStore, applyMiddleware} from 'redux'
+import logger from 'redux-logger'
+import thunk from 'redux-thunk'
+import rootReducers from './reducers'
 
-const store = () => {
-  return (
-    <div>ini test/template saja</div>
-  )
-}
-
+let store = createStore(rootReducers, applyMiddleware(thunk, logger))
 export default store
