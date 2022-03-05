@@ -10,11 +10,20 @@ import Wifi from '../../assets/wifi.svg'
 import Input from '../../components/module/Input'
 import Footer from '../../components/module/Footer'
 import ReactPaginate from 'react-paginate'
+import { useSearchParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 import { getFlights } from '../../redux/actions/flights'
 
 const FindTicket = () => {
 
+    //handle params
+    const [params, setParams] = useSearchParams()
+    const handleSearch = () => {
+        setParams(form)
+        console.log(params);
+    }
+
+    //batas handle params
     const [showRadio1, setShowRadio1] = useState(true)
     const [facilities, setFacilities] = useState([])
     const [airlines, setAirlines] = useState([])
@@ -30,7 +39,9 @@ const FindTicket = () => {
         departure: '',
         arrival: '',
         class: '',
-        qty: 0
+        transit: '',
+        arrival_type: '',
+        depature_type:''
     })
 
     const dispatch = useDispatch()
@@ -38,8 +49,8 @@ const FindTicket = () => {
     console.log(tickets);
     //get all tickets
     useEffect(() => {
-        dispatch(getFlights())
-    }, [])
+        dispatch(getFlights(form))
+    }, [params])
 
     //pagination config
     const displayTickets = tickets.data.slice(pagesVisited, pagesVisited + dataPerPage).map((ticket, index) => {
@@ -54,12 +65,12 @@ const FindTicket = () => {
                     <div className="pt-lg-5 d-flex justify-content-between align-items-center w-100">
                         <div className={`${styles.leftSection} d-flex justify-content-between`}>
                             <div className="departure-section d-flex flex-column align-items-start">
-                                <h5 className="text-secondary">{ticket.departure}</h5>
+                                <h5 className="text-secondary fw-bold">{ticket.departure}</h5>
                                 <p className="text-secondary">{ticket.depature_time}</p>
                             </div>
                             <img src={PlaneTix} className='d-flex align-items-start' alt="" />
                             <div className="arrival-section d-flex flex-column align-items-start">
-                                <h5 className="text-secondary">{ticket.arrival}</h5>
+                                <h5 className="text-secondary fw-bold">{ticket.arrival}</h5>
                                 <p className="text-secondary">{ticket.arrival_time}</p>
                             </div>
                         </div>
@@ -103,7 +114,7 @@ const FindTicket = () => {
     }
 
     //transit
-    const handleRadioTransit = (e) => {         //masih ngaco logicnya
+    const handleRadioTransit = (e) => {
         console.log(e.target.value);
     }
     const handleDropdownTransit = () => setShowRadio1(!showRadio1)
@@ -123,15 +134,9 @@ const FindTicket = () => {
 
     //departure
     const handleDropdownDeparture = () => setShowRadio3(!showRadio3)
-    const handleRadioDeparture = (e) => {
-        console.log(e.target.value, "departure");
-    }
 
     //arrival
     const handleDropdownArrival = () => setShowRadio4(!showRadio4)
-    const handleRadioArrival = (e) => {
-        console.log(e.target.value, "arrival");
-    }
 
     //airlines
     const handleDropdownAirlines = () => setShowRadio5(!showRadio5)
@@ -203,7 +208,10 @@ const FindTicket = () => {
                             </div>
                         </div>
                     </div>
-                    <h5 className={`header-right text-white w-25 d-flex justify-content-end ${styles.changeSearch}`}>
+                    <h5 
+                    className={`header-right text-white w-25 d-flex justify-content-end ${styles.changeSearch}`}
+                    onClick={handleSearch}
+                    >
                         Change Search
                     </h5>
 
@@ -239,7 +247,7 @@ const FindTicket = () => {
                                                 name='transit'
                                                 value='direct'
                                                 className={`${styles.radiobox}`}
-                                                onClick={handleRadioTransit}
+                                                onClick={handleChange}
                                             />
                                         </div>
                                         <div className=' d-flex justify-content-between align-items-center my-3'>
@@ -247,9 +255,9 @@ const FindTicket = () => {
                                             <Input
                                                 type='radio'
                                                 name='transit'
-                                                value='transit'
+                                                value='1 transit'
                                                 className={`${styles.radiobox}`}
-                                                onClick={handleRadioTransit}
+                                                onClick={handleChange}
                                             />
                                         </div>
                                         <div className=' d-flex justify-content-between align-items-center my-3'>
@@ -257,9 +265,9 @@ const FindTicket = () => {
                                             <Input
                                                 type='radio'
                                                 name='transit'
-                                                value='transit 2+'
+                                                value='2 transit'
                                                 className={`${styles.radiobox}`}
-                                                onClick={handleRadioTransit}
+                                                onClick={handleChange}
                                             />
                                         </div>
                                     </div>
@@ -338,40 +346,40 @@ const FindTicket = () => {
                                             00.00 - 06.00
                                             <Input
                                                 type='radio'
-                                                name='departure'
+                                                name='departure_type'
                                                 value='early'
                                                 className={`${styles.radiobox}`}
-                                                onClick={handleRadioDeparture}
+                                                onClick={handleChange}
                                             />
                                         </div>
                                         <div className=' d-flex justify-content-between align-items-center my-3'>
                                             06.00 - 12.00
                                             <Input
                                                 type='radio'
-                                                name='departure'
+                                                name='departure_type'
                                                 value='mid-early'
                                                 className={`${styles.radiobox}`}
-                                                onClick={handleRadioDeparture}
+                                                onClick={handleChange}
                                             />
                                         </div>
                                         <div className=' d-flex justify-content-between align-items-center my-3'>
                                             12.00 - 18.00
                                             <Input
                                                 type='radio'
-                                                name='departure'
+                                                name='departure_type'
                                                 value='mid-late'
                                                 className={`${styles.radiobox}`}
-                                                onClick={handleRadioDeparture}
+                                                onClick={handleChange}
                                             />
                                         </div>
                                         <div className=' d-flex justify-content-between align-items-center my-3'>
                                             18.00 - 24.00
                                             <Input
                                                 type='radio'
-                                                name='departure'
+                                                name='departure_type'
                                                 value='late'
                                                 className={`${styles.radiobox}`}
-                                                onClick={handleRadioDeparture}
+                                                onClick={handleChange}
                                             />
                                         </div>
                                     </div>
@@ -399,40 +407,40 @@ const FindTicket = () => {
                                             00.00 - 06.00
                                             <Input
                                                 type='radio'
-                                                name='arrival'
+                                                name='arrival_type'
                                                 value='early'
                                                 className={`${styles.radiobox}`}
-                                                onClick={handleRadioArrival}
+                                                onClick={handleChange}
                                             />
                                         </div>
                                         <div className=' d-flex justify-content-between align-items-center my-3'>
                                             06.00 - 12.00
                                             <Input
                                                 type='radio'
-                                                name='arrival'
+                                                name='arrival_type'
                                                 value='mid-early'
                                                 className={`${styles.radiobox}`}
-                                                onClick={handleRadioArrival}
+                                                onClick={handleChange}
                                             />
                                         </div>
                                         <div className=' d-flex justify-content-between align-items-center my-3'>
                                             12.00 - 18.00
                                             <Input
                                                 type='radio'
-                                                name='arrival'
+                                                name='arrival_type'
                                                 value='mid-late'
                                                 className={`${styles.radiobox}`}
-                                                onClick={handleRadioArrival}
+                                                onClick={handleChange}
                                             />
                                         </div>
                                         <div className=' d-flex justify-content-between align-items-center my-3'>
                                             18.00 - 24.00
                                             <Input
                                                 type='radio'
-                                                name='arrival'
+                                                name='arrival_type'
                                                 value='late'
                                                 className={`${styles.radiobox}`}
-                                                onClick={handleRadioArrival}
+                                                onClick={handleChange}
                                             />
                                         </div>
                                     </div>
@@ -460,8 +468,8 @@ const FindTicket = () => {
                                             Air Asia
                                             <Input
                                                 type='checkbox'
-                                                name='airlines'
-                                                value='air asia'
+                                                name='airline'
+                                                value='Airsia'
                                                 className={`${styles.radiobox}`}
                                                 onClick={handleRadioAirlines}
                                             />
@@ -470,7 +478,7 @@ const FindTicket = () => {
                                             Garuda Indonesia
                                             <Input
                                                 type='checkbox'
-                                                name='airlines'
+                                                name='airline'
                                                 value='Garuda Indonesia'
                                                 className={`${styles.radiobox}`}
                                                 onClick={handleRadioAirlines}
@@ -480,8 +488,8 @@ const FindTicket = () => {
                                             Lion Air
                                             <Input
                                                 type='checkbox'
-                                                name='airlines'
-                                                value='Lion Air'
+                                                name='airline'
+                                                value='LionAir'
                                                 className={`${styles.radiobox}`}
                                                 onClick={handleRadioAirlines}
                                             />

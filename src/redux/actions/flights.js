@@ -18,16 +18,18 @@ export const getFlightsError = (error) => {
     }
 }
 
-export const getFlights = () => (dispatch) => {
+export const getFlights = (form) => (dispatch) => {
     dispatch(getFlightsRequest());
     return axios({
-        method: 'GET',
+        method: 'POST',
         url: `${process.env.REACT_APP_URL_BACKEND}/list-flight`,
+        data: {arrival: form.arrival, departure: form.departure, class: form.class}
     })
         .then((res) => {
             const data = res.data?.data;
             console.log(res);
             dispatch(getFlightsResponse(data));
+            localStorage.setItem('qty', form.qty)
         })
         .catch((err) => {
             const message = err.message;
