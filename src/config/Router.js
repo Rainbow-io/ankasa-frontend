@@ -7,7 +7,9 @@ import Auth from '../pages/Auth/';
 import Login from '../pages/Auth/Login';
 
 import Main from '../pages/Main';
-import BookingDetail from '../pages/Main/BookingDetail'
+import BookingDetail from '../pages/Main/BookingDetail';
+import Notification from '../pages/Main/Notification';
+
 const Router = () => {
   return (
     <BrowserRouter>
@@ -18,6 +20,7 @@ const Router = () => {
 
         <Route path="/main" element={<Main />}>
           <Route path="booking-detail" element={<BookingDetail />} />
+          <Route path="notification" element={<Notification />} />
         </Route>
       </Routes>
     </BrowserRouter>
