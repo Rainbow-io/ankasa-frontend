@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { decodeToken } from 'react-jwt'
 import { useParams } from 'react-router-dom'
-import Footer from '../../../components/module/Footer'
-import Input from '../../../components/module/Input'
-import Navbar from '../../../components/module/Navbar'
-import socket from '../../../helpers/socket'
+import Input from '../../../../components/module/Input'
+// eslint-disable-next-line no-unused-vars
+import socket from '../../../../helpers/socket'
 import styles from './chatroom.module.css'
 import { useDispatch, useSelector } from 'react-redux';
-import { getUserID } from '../../../redux/actions/userByID';
-import Kucing from '../../../assets/kucinggarong.jpeg'
+import { getUserID } from '../../../../redux/actions/userByID';
+import Kucing from '../../../../assets/kucinggarong.jpeg'
 
 
 const ChatRoom = () => {
@@ -23,6 +22,7 @@ const ChatRoom = () => {
     console.log(receiver);
     useEffect(() => {
         dispatch(getUserID(id))
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
     const handleChange = (e) => {
         setMessage(e.target.value)
@@ -79,7 +79,6 @@ const ChatRoom = () => {
 
     return (
         <main className={`d-flex flex-column ${styles.con}`}>
-            <Navbar />
             <main className={`container-fluid g-0 bg-light p-lg-5 flex-fill`}>
                 <div className={`w-75 d-flex flex-column mx-auto bg-white ${styles.chatCon}`}>
                     <div className={`h-25 w-100 d-flex align-items-center p-lg-5 ${styles.receiverHeader}`}>
@@ -118,7 +117,6 @@ const ChatRoom = () => {
                     </div>
                 </div>
             </main>
-            <Footer />
         </main>
     )
 }
