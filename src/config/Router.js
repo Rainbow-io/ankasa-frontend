@@ -12,6 +12,7 @@ import ForgotPassword from '../pages/Auth/ForgotPassword';
 
 import Main from '../pages/Main';
 import Explore from '../pages/Main/Explore';
+import MyBooking from '../pages/Main/MyBooking';
 
 const Router = () => {
   return (
@@ -26,6 +27,7 @@ const Router = () => {
 
         <Route path="/main" element={<Main />}>
           <Route path="explore" element={<Explore />} />
+          <Route path="my-booking" element={<MyBooking />} />
         </Route>
 
 
