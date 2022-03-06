@@ -1,0 +1,135 @@
+.searchHeader{
+    height: 20vh;
+    background-color: #2395FF;
+    border-radius: 0px 0px 30px 30px;
+    position: relative;
+    padding-left: 5rem;
+    padding-right: 1rem;
+    align-items: center;
+}
+.plane2{
+    height: 17vh;
+    width: 156px;
+    position: absolute;
+    bottom: 0;
+    left: 0;}
+
+.headerLeft{
+    align-items: center;
+    height: 100%;
+}
+
+.plane3{
+    z-index: 3;
+}
+
+.headerLeft1{
+    width: 24rem;
+    z-index: 5;
+}
+
+.changeSearch{
+    cursor: pointer;
+}
+
+.input2, .input1, .input3{
+    background-color: transparent;
+    border: none;
+    outline: transparent;
+    text-align: end;
+    width: 10rem
+}
+
+.input1{
+    text-align: Start;
+}
+
+.spantext{
+    font-weight: 100;
+    font-size: 1rem;
+}
+
+.inputLower{
+    width: 5rem;
+}
+
+.filter, .ticket{
+    border-radius: 2rem;
+}
+
+.ticket{
+    height: 15rem;
+}
+
+.airlineLogo{
+    width: 6rem;
+    height: 4rem;
+}
+
+.airlines{
+    font-weight: 600;
+}
+
+.button{
+    padding: 1rem 3rem;
+    box-shadow: 0px 8px 10px rgb(35 149 255 / 30%);
+    border-radius: .75rem;
+    cursor: pointer;
+}
+
+.leftSection{
+    width: 35%;
+}
+
+.midLeft , .midMid{
+    width: 20%;
+}
+
+.paginationBtns {
+margin-top: 1rem;
+    height: 2rem;
+    list-style: none;
+    display: flex;
+    justify-content: center;
+}
+
+.paginationBtns a {
+    padding: 10px;
+    margin: 8px;
+    border-radius: 5px;
+    border: 1px solid #2395FF;
+    color: #2395FF;
+    cursor: pointer;
+}
+
+.paginationBtns a:hover {
+    color: white;
+    background-color: #2395FF;
+}
+
+.activePagination a {
+    color: white;
+    background-color: #2395FF;
+}
+
+.disabledPagination a {
+    color: rgb(192, 186, 186);
+    background-color: rgb(136, 132, 132);
+}
+
+.searchh{
+    z-index: 6
+}
+
+@media screen and (min-width: 240px) and (max-width: 480px){
+    .searchHeader{
+        padding: 0 1rem;
+    }
+    .leftSection{
+        width: 60%;
+    }
+
+    .ticket{
+        height: 10rem;
+    }
+}

@@ -9,13 +9,15 @@ import Auth from '../pages/Auth/';
 import Login from '../pages/Auth/Login';
 import SignUp from '../pages/Auth/SignUp';
 import ForgotPassword from '../pages/Auth/ForgotPassword';
-
+import FindTicket from '../pages/FindTicket'
 import Main from '../pages/Main';
 import Explore from '../pages/Main/Explore';
 import Profile from '../pages/Main/Profile';
 import MyBooking from '../pages/Main/MyBooking';
 import BookingDetail from '../pages/Main/BookingDetail';
 import Notification from '../pages/Main/Notification';
+import Chat from '../pages/Chat'
+import ChatRoom from '../pages/Chat/ChatRoom';
 
 const Router = () => {
   return (
@@ -34,6 +36,9 @@ const Router = () => {
           <Route path="profile" element={<Profile />} />
           <Route path="booking-detail" element={<BookingDetail />} />
           <Route path="notification" element={<Notification />} />
+          <Route path="find-ticket" element={<FindTicket/>} />
+          <Route path="chat" element={<Chat/>} />
+          <Route path="chat/:id" element={<ChatRoom/>} />
         </Route>
 
 
