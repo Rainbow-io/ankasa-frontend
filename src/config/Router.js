@@ -15,6 +15,7 @@ import Explore from '../pages/Main/Explore';
 import Profile from '../pages/Main/Profile';
 import MyBooking from '../pages/Main/MyBooking';
 import BookingDetail from '../pages/Main/BookingDetail';
+import Notification from '../pages/Main/Notification';
 
 const Router = () => {
   return (
@@ -32,6 +33,7 @@ const Router = () => {
           <Route path="my-booking" element={<MyBooking />} />
           <Route path="profile" element={<Profile />} />
           <Route path="booking-detail" element={<BookingDetail />} />
+          <Route path="notification" element={<Notification />} />
         </Route>
 
 
