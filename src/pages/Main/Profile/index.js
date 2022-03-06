@@ -1,15 +1,23 @@
 // import internal modules
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import {decodeToken} from 'react-jwt'
 
 // import external modules
+import {getUserID} from '../../../redux/actions/userByID';
 import Button from '../../../components/base/Button';
 import Input from '../../../components/base/Input';
 import ModalPic from '../../../components/module/ModalPic';
 import './profile.css';
 
 const Profile = () => {
+    const tokenUser = localStorage.getItem('token');
+    const userInfo = decodeToken(tokenUser)
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+
+    const userDetailData = useSelector((state) => state.UserID)
 
     const [formProfile, setFormProfile] = useState({
         email: '',
@@ -22,7 +30,7 @@ const Profile = () => {
 
     const [formProfileError, setFormProfileError] = useState(false);
     const [loading, setLoading] = useState(false);
-    const [showModalPic, setShowModalPic] = useState(false)
+    const [showModalPic, setShowModalPic] = useState(false);
 
     const handleChange = (e) => {
         setFormProfile({
@@ -58,6 +66,11 @@ const Profile = () => {
         }
         return errors;
     }
+
+    useEffect(() => {
+        dispatch((getUserID(userInfo.id)))
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -96,10 +109,10 @@ const Profile = () => {
                                     <div className="fw-bold text-primary">Select Photo</div>
                                 </div>
                                 <div className="name">
-                                    <div className="fw-bold">Mike Kowalski</div>
+                                    <div className="fw-bold">{userDetailData.data?.fullname}</div>
                                 </div>
                                 <div className="address">
-                                    <div className="text-muted fs-6">Medan, Indonesia</div>
+                                    <div className="text-muted fs-6"><span>{userDetailData.data?.address}, </span><span>{userDetailData.data?.city}</span></div>
                                 </div>
                             </div>
                             <div className="d-none d-md-block my-3 content-middle">
@@ -181,6 +194,7 @@ const Profile = () => {
                                                         name="email"
                                                         onChange={handleChange}
                                                         value={formProfile.email}
+                                                        placeHolder={userDetailData.data?.email}
                                                         className="w-100 border-0 border-bottom border-2 px-3" />
                                                 </div>
                                                 <div className="phone-form mt-3">
@@ -191,6 +205,7 @@ const Profile = () => {
                                                         name="phonenumber"
                                                         onChange={handleChange}
                                                         value={formProfile.phonenumber}
+                                                        placeHolder={userDetailData.data?.phone}
                                                         className="w-100 border-0 border-bottom px-3" />
                                                 </div>
                                                 <div className="d-flex mt-5 justify-content-end account-settings">
@@ -210,6 +225,7 @@ const Profile = () => {
                                                         name="username"
                                                         onChange={handleChange}
                                                         value={formProfile.username}
+                                                        placeHolder={userDetailData.data?.username}
                                                         className="w-100 border-0 border-bottom px-3" />
                                                 </div>
                                                 <div className="city-form mt-3">
@@ -220,6 +236,7 @@ const Profile = () => {
                                                         name="city"
                                                         onChange={handleChange}
                                                         value={formProfile.city}
+                                                        placeHolder={userDetailData.data?.city}
                                                         className="w-100 border-0 border-bottom px-3" />
                                                 </div>
                                                 <div className="address-form mt-3">
@@ -230,6 +247,7 @@ const Profile = () => {
                                                         name="address"
                                                         onChange={handleChange}
                                                         value={formProfile.address}
+                                                        placeHolder={userDetailData.data?.address}
                                                         className="w-100 border-0 border-bottom px-3" />
                                                 </div>
                                                 <div className="username-form mt-3">
@@ -240,6 +258,7 @@ const Profile = () => {
                                                         name="postcode"
                                                         onChange={handleChange}
                                                         value={formProfile.postcode}
+                                                        placeHolder={userDetailData.data?.postcode}
                                                         className="w-100 border-0 border-bottom px-3" />
                                                 </div>
                                             </div>
@@ -410,7 +429,7 @@ const Profile = () => {
                                     </div>
                                 </div>
                                 <div className="button-wrapper d-flex justify-content-end">
-                                    <Button onClick={handleSubmit} className="my-5 py-3 w-25 text-center text-white fw-bold btn-save">Save</Button>
+                                    <Button isLoading={loading} onClick={handleSubmit} className="my-5 py-3 w-25 text-center text-white fw-bold btn-save">Save</Button>
                                 </div>
                             </div>
                         </div>
