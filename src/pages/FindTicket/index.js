@@ -12,7 +12,7 @@ import Footer from '../../components/module/Footer'
 import ReactPaginate from 'react-paginate'
 import { useSearchParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
-import { getFlights } from '../../redux/actions/flights'
+import { getFlights } from '../../redux/actions/flights';
 
 const FindTicket = () => {
 
@@ -41,7 +41,7 @@ const FindTicket = () => {
         class: '',
         transit: '',
         arrival_type: '',
-        depature_type:''
+        depature_type: ''
     })
 
     const dispatch = useDispatch()
@@ -57,43 +57,51 @@ const FindTicket = () => {
         return (
             <div className={`w-100 ${styles.ticket} bg-white mb-3`}
                 key={index}>
-                <div className="wrapper w-100 h-100 p-3">
+                <div className="wrapper w-100 h-100 p-lg-3 p-1 px-3 d-lg-block d-flex flex-column">
                     <div className="w-50 d-flex justify-content-between align-items-center">
-                        <img src={ticket.logo} className={`${styles.airlineLogo}`} alt="" />
+                        <img src={ticket.logo} className={`${styles.airlineLogo} d-lg-block d-none`} alt="" />
                         <p className={`w-75 ${styles.airlines} text-secondary`}>{ticket.airlines}</p>
                     </div>
                     <div className="pt-lg-5 d-flex justify-content-between align-items-center w-100">
                         <div className={`${styles.leftSection} d-flex justify-content-between`}>
                             <div className="departure-section d-flex flex-column align-items-start">
-                                <h5 className="text-secondary fw-bold">{ticket.departure}</h5>
+                                <h5 className="fw-bold">{ticket.departure}</h5>
                                 <p className="text-secondary">{ticket.depature_time}</p>
                             </div>
-                            <img src={PlaneTix} className='d-flex align-items-start' alt="" />
+                            <img src={PlaneTix} className='d-flex justify-content-center px-3' alt="" />
                             <div className="arrival-section d-flex flex-column align-items-start">
-                                <h5 className="text-secondary fw-bold">{ticket.arrival}</h5>
+                                <h5 className="fw-bold">{ticket.arrival}</h5>
                                 <p className="text-secondary">{ticket.arrival_time}</p>
                             </div>
                         </div>
-                        <div className={`${styles.midLeft} d-flex flex-column justify-content-center align-items-center`}>
+                        <div className={`${styles.midLeft} d-lg-flex d-none flex-column justify-content-center align-items-center`}>
                             <h6 className="text-secondary">{ticket.duration}</h6>
                             <p className="text-secondary">({ticket.transit})</p>
                         </div>
-                        <div className={`${styles.midMid} d-flex align-items-center`}>
+                        <div className={`${styles.midMid} d-lg-flex d-none align-items-center`}>
                             {ticket.facilities.split(', ').map((facility) => {
                                 return (
                                     (facility === 'meal' && <img className='mx-3' src={Meal} alt='' />) || (facility === 'wifi' && <img className='mx-3' src={Wifi} alt='' />) || (facility === 'luggage' && <img className='mx-3' src={Luggage} alt='' />)
                                 )
                             })}
                         </div>
-                        <div className={`${styles.midMid} d-flex align-items-center justify-content-center`}>
-                            <p className={`text-primary ${styles.airlines}`}>${ticket.price}.00
+                        <div className={`${styles.midMid} d-flex align-items-center justify-content-center pe-lg-0 pe-3`}>
+                            <p className={`text-primary ${styles.airlines} d-lg-block d-none`}>${ticket.price}.00
                                 <span className="text-secondary ms-1">
                                     /pax
                                 </span>
                             </p>
                         </div>
-                        <div className={`bg-primary text-white ${styles.button}`}>Select</div>
+                        <div className={`bg-primary text-white d-lg-block d-none ${styles.button}`}>Select</div>
 
+                    </div>
+                    <div className="d-lg-none d-flex justify-content-between align-items-center w-100 pb-3">
+                    <h5 className="text-secondary fw-bold">{ticket.airline}</h5>
+                    <p className={`text-primary ${styles.airlines}`}>${ticket.price}.00
+                                <span className="text-secondary ms-1">
+                                    /pax
+                                </span>
+                            </p>
                     </div>
                 </div>
             </div>
@@ -153,10 +161,10 @@ const FindTicket = () => {
         <Fragment>
             <Navbar />
             <main className={`container-fluid g-0 bg-light ${styles.con}`}>
-                <header className={`${styles.searchHeader} d-flex justify-content-between`}>
+                <header className={`${styles.searchHeader} d-flex flex-lg-row flex-column justify-content-between`}>
                     <img src={Plane2} className={`${styles.plane2}`} alt="" />
                     <div className={`${styles.headerLeft} d-flex`}>
-                        <img src={Plane3} className={`${styles.plane3}`} alt="" />
+                        <img src={Plane3} className={`${styles.plane3} d-lg-block d-none`} alt="" />
                         <div className={`${styles.headerLeft1} d-flex flex-column`}>
                             <div className={`d-flex justify-content-between w-100 mb-1`}>
                                 <p className={`${styles.p1} text-white`}>From</p>
@@ -170,7 +178,8 @@ const FindTicket = () => {
                                     value={form.departure}
                                     onChange={handleChange}
                                 />
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left-right text-white" viewBox="0 0 16 16">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left-right text-white" viewBox="0 0 16 16"
+                                >
                                     <path fill-rule="evenodd" d="M1 11.5a.5.5 0 0 0 .5.5h11.793l-3.147 3.146a.5.5 0 0 0 .708.708l4-4a.5.5 0 0 0 0-.708l-4-4a.5.5 0 0 0-.708.708L13.293 11H1.5a.5.5 0 0 0-.5.5zm14-7a.5.5 0 0 1-.5.5H2.707l3.147 3.146a.5.5 0 1 1-.708.708l-4-4a.5.5 0 0 1 0-.708l4-4a.5.5 0 1 1 .708.708L2.707 4H14.5a.5.5 0 0 1 .5.5z" />
                                 </svg>
                                 <Input
@@ -208,16 +217,23 @@ const FindTicket = () => {
                             </div>
                         </div>
                     </div>
-                    <h5 
-                    className={`header-right text-white w-25 d-flex justify-content-end ${styles.changeSearch}`}
-                    onClick={handleSearch}
-                    >
-                        Change Search
-                    </h5>
+                    <div className={`d-flex w-lg-25 w-100 ${styles.searchh} pb-lg-0 p-2`}>
+                        <h5
+                            className={`header-right text-white w-100 d-flex justify-content-lg-end justify-contend-start ${styles.changeSearch}`}
+                            onClick={handleSearch}
+                        >
+                            Change Search
+                        </h5>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right-fill d-lg-none d-block justify-content-end text-white" viewBox="0 0 16 16"
+                            onChange={handleChange}
+                        >
+                            <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z" />
+                        </svg>
+                    </div>
 
                 </header>
                 <div className="w-100 p-3 d-flex">
-                    <div className="w-25 me-5 d-flex flex-column">
+                    <div className="w-25 me-5 d-flex flex-column d-none d-lg-block">
                         <div className='d-flex w-100 justify-content-between align-items-center my-3'>
                             <h4>Filter</h4>
                             <h6 className='text-primary'>Reset</h6>
@@ -500,7 +516,7 @@ const FindTicket = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="w-75 d-flex flex-column">
+                    <div className="w-lg-75 w-100 d-flex flex-column">
                         <div className='d-flex w-100 justify-content-between align-items-center my-3'>
                             <h4>Select Ticket
                                 <span className={`text-secondary ${styles.spantext}`}> ({tickets.data.length} flight found)

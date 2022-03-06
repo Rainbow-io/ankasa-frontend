@@ -1,0 +1,28 @@
+.con{
+    height: 130vh;
+}
+
+.chatCon{
+    height: 90%;
+    border-radius: 2rem;
+    margin-top: 2.5%;
+}
+
+.con1{
+    height: 70%;
+    overflow-y: auto;
+}
+
+.pic{
+    height: 4rem;
+    width: 4rem;
+    border-radius: 1rem;
+}
+
+.italic{
+    font-style: italic;
+}
+
+.pointer{
+    cursor: pointer;
+}

@@ -86,33 +86,50 @@
 }
 
 .paginationBtns {
-    margin-top: 1rem;
-      height: 2rem;
-      list-style: none;
-      display: flex;
-      justify-content: center;
+margin-top: 1rem;
+    height: 2rem;
+    list-style: none;
+    display: flex;
+    justify-content: center;
+}
+
+.paginationBtns a {
+    padding: 10px;
+    margin: 8px;
+    border-radius: 5px;
+    border: 1px solid #2395FF;
+    color: #2395FF;
+    cursor: pointer;
+}
+
+.paginationBtns a:hover {
+    color: white;
+    background-color: #2395FF;
+}
+
+.activePagination a {
+    color: white;
+    background-color: #2395FF;
+}
+
+.disabledPagination a {
+    color: rgb(192, 186, 186);
+    background-color: rgb(136, 132, 132);
+}
+
+.searchh{
+    z-index: 6
+}
+
+@media screen and (min-width: 240px) and (max-width: 480px){
+    .searchHeader{
+        padding: 0 1rem;
     }
-    
-    .paginationBtns a {
-      padding: 10px;
-      margin: 8px;
-      border-radius: 5px;
-      border: 1px solid #2395FF;
-      color: #2395FF;
-      cursor: pointer;
+    .leftSection{
+        width: 60%;
     }
-    
-    .paginationBtns a:hover {
-      color: white;
-      background-color: #2395FF;
+
+    .ticket{
+        height: 10rem;
     }
-    
-    .activePagination a {
-      color: white;
-      background-color: #2395FF;
-    }
-    
-    .disabledPagination a {
-      color: rgb(192, 186, 186);
-      background-color: rgb(136, 132, 132);
-    }
+}

@@ -1,6 +1,4 @@
 .navbar{
-    height: 15vh;
-    display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 0 1rem
@@ -44,4 +42,8 @@
     width: 40px;
     height: 40px;
     border-radius: 50%;
+}
+
+.pointer{
+    cursor: pointer;
 }

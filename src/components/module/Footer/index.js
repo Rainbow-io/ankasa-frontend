@@ -6,7 +6,7 @@ import styles from './footer.module.css'
 
 const Footer = () => {
     return (
-        <div className={`${styles.footer} footer container-fluid pt-5 pb-4 bg-white`}>
+        <div className={`${styles.footer} footer container-fluid pt-5 pb-4 bg-white d-lg-block d-none`}>
             <div className='mx-5'>
                 <div className="top-footer d-flex">
                     <div className="left-foot w-25">

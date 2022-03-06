@@ -12,6 +12,8 @@ import ForgotPassword from '../pages/Auth/ForgotPassword';
 import FindTicket from '../pages/FindTicket'
 import Main from '../pages/Main';
 import BookingDetail from '../pages/Main/BookingDetail';
+import Chat from '../pages/Chat'
+import ChatRoom from '../pages/Chat/ChatRoom';
 
 const Router = () => {
   return (
@@ -26,7 +28,9 @@ const Router = () => {
 
         <Route path="/main" element={<Main />}>
           <Route path="booking-detail" element={<BookingDetail />} />
-          <Route path="find-ticket" element={<FindTicket/>}></Route>
+          <Route path="find-ticket" element={<FindTicket/>} />
+          <Route path="chat" element={<Chat/>} />
+          <Route path="chat/:id" element={<ChatRoom/>} />
         </Route>
 
 
