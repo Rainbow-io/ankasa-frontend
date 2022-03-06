@@ -13,11 +13,11 @@ const Navbar = () => {
 
   //KALO BE UDAH PASANG SOCKET AKAN DI UNCOMMENT
   const token = localStorage.getItem('token')
-  const {email} = decodeToken(token)
-  console.log(email);
+  const {username} = decodeToken(token)
+  console.log(username);
   useEffect(()=>{
     if(token){
-      socket.emit("User ID", email)
+      socket.emit("User ID", username)
     }
   }, [token])
 

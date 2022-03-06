@@ -1,43 +1,53 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Footer from '../../components/module/Footer'
 import Navbar from '../../components/module/Navbar'
 import styles from './chat.module.css'
 import { useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux';
+import { getUsers } from '../../redux/actions/users';
+import Kucing from '../../assets/kucinggarong.jpeg'
+
 
 const Chat = () => {
 
     const navigate = useNavigate()
+    const dispatch = useDispatch()
+    const users = useSelector((state) => state.Users)
 
-    const users = [{
-        id: 1,
-        username: "Meong",
-        photo: "https://th.bing.com/th/id/OIP.GKhiEOmge1JFwYMst2neTQHaHX?pid=ImgDet&rs=1"
-    },
-    {
-        id: 2,
-        username: "Meong Meong",
-        photo: "https://th.bing.com/th/id/OIP.oGFj8kvH1_KgHrPNiMqSMgAAAA?pid=ImgDet&w=300&h=300&rs=1"
-    },
-    {
-        id: 3,
-        username: "Meong II",
-        photo: "https://th.bing.com/th/id/OIP.GKhiEOmge1JFwYMst2neTQHaHX?pid=ImgDet&rs=1"
-    },
-    {
-        id: 4,
-        username: "Meong Meong II",
-        photo: "https://th.bing.com/th/id/OIP.oGFj8kvH1_KgHrPNiMqSMgAAAA?pid=ImgDet&w=300&h=300&rs=1"
-    },
-    {
-        id: 5,
-        username: "Meong III",
-        photo: "https://th.bing.com/th/id/OIP.GKhiEOmge1JFwYMst2neTQHaHX?pid=ImgDet&rs=1"
-    },
-    {
-        id: 6,
-        username: "Meong Meong III",
-        photo: "https://th.bing.com/th/id/OIP.oGFj8kvH1_KgHrPNiMqSMgAAAA?pid=ImgDet&w=300&h=300&rs=1"
-    }]
+    // const users = [{
+    //     id: 1,
+    //     username: "Meong",
+    //     photo: "https://th.bing.com/th/id/OIP.GKhiEOmge1JFwYMst2neTQHaHX?pid=ImgDet&rs=1"
+    // },
+    // {
+    //     id: 2,
+    //     username: "Meong Meong",
+    //     photo: "https://th.bing.com/th/id/OIP.oGFj8kvH1_KgHrPNiMqSMgAAAA?pid=ImgDet&w=300&h=300&rs=1"
+    // },
+    // {
+    //     id: 3,
+    //     username: "Meong II",
+    //     photo: "https://th.bing.com/th/id/OIP.GKhiEOmge1JFwYMst2neTQHaHX?pid=ImgDet&rs=1"
+    // },
+    // {
+    //     id: 4,
+    //     username: "Meong Meong II",
+    //     photo: "https://th.bing.com/th/id/OIP.oGFj8kvH1_KgHrPNiMqSMgAAAA?pid=ImgDet&w=300&h=300&rs=1"
+    // },
+    // {
+    //     id: 5,
+    //     username: "Meong III",
+    //     photo: "https://th.bing.com/th/id/OIP.GKhiEOmge1JFwYMst2neTQHaHX?pid=ImgDet&rs=1"
+    // },
+    // {
+    //     id: 6,
+    //     username: "Meong Meong III",
+    //     photo: "https://th.bing.com/th/id/OIP.oGFj8kvH1_KgHrPNiMqSMgAAAA?pid=ImgDet&w=300&h=300&rs=1"
+    // }]
+
+    useEffect(() => {
+        dispatch(getUsers())
+    }, [])
 
     return (
         <main className={`d-flex flex-column ${styles.con}`}>
@@ -51,14 +61,14 @@ const Chat = () => {
                     </div>
                     <div className={`w-100 mt-lg-3 flex-fill ${styles.con1}`}>
                         {/* buat mapping user bakal chatan */}
-                        {users.map((user, index) => {
+                        {users.data.map((user, index) => {
                             return (
                                 <div className={`${styles.pointer} wrapper w-100`}
                                     key={index}
-                                    onClick={()=>navigate(`/main/chat/${user.id}`)}>
+                                    onClick={()=>navigate(`/main/chat/${user.idusers}`)}>
                                     <div className="user w-100 py-lg-3 d-flex">
                                         {/* user profPic */}
-                                        <img src={user.photo} className={`${styles.pic} me-lg-3`} alt="" />
+                                        <img src={user.photo? user.photo : Kucing} className={`${styles.pic} me-lg-3`} alt="" />
                                         <div className="chat d-flex flex-column flex-fill justify-content-between">
                                             {/* user name */}
                                             <h4 className="fw-bold">{user.username}</h4>
