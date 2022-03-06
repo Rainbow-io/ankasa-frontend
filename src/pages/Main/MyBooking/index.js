@@ -1,10 +1,12 @@
 // import internal modules
 import React from 'react';
+import {useNavigate} from 'react-router-dom'
 
 // import external modules
 import './mybooking.css'
 
 const MyBooking = () => {
+    const navigate = useNavigate();
     return (
         <div className="body-background">
             <div className="d-flex px-5 py-5 wrapper-content">
@@ -117,7 +119,7 @@ const MyBooking = () => {
                             <div className="d-flex lower justify-content-around">
                                 <div className="me-5 status text-muted fw-bold">Status</div>
                                 <div className="px-3 py-2 btn-status-payment fw-bold text-white">Waiting For Payment</div>
-                                <div className="ms-5 view-details text-primary fw-bold flex-grow-1 text-end">View Details<span><img className="px-1" src={require("../../../assets/icons/btndown-mybooking.svg").default} alt="" /></span></div>
+                                <div className="ms-5 view-details text-primary fw-bold flex-grow-1 text-end" onClick={()=>navigate("/main/booking-detail")}>View Details<span><img className="px-1" src={require("../../../assets/icons/btndown-mybooking.svg").default} alt="" /></span></div>
                             </div>
                         </div>
                     </div>
@@ -143,7 +145,7 @@ const MyBooking = () => {
                             <div className="d-flex lower justify-content-around">
                                 <div className="me-5 status text-muted fw-bold">Status</div>
                                 <div className="px-3 py-2 btn-status-issued fw-bold text-white">Eticket Issued</div>
-                                <div className="ms-5 view-details text-primary fw-bold flex-grow-1 text-end">View Details<span><img className="px-1" src={require("../../../assets/icons/btndown-mybooking.svg").default} alt="" /></span></div>
+                                <div className="ms-5 view-details text-primary fw-bold flex-grow-1 text-end" onClick={()=>navigate("/main/booking-detail")}>View Details<span><img className="px-1" src={require("../../../assets/icons/btndown-mybooking.svg").default} alt="" /></span></div>
                             </div>
                         </div>
                     </div>
