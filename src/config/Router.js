@@ -11,8 +11,8 @@ import SignUp from '../pages/Auth/SignUp';
 import ForgotPassword from '../pages/Auth/ForgotPassword';
 
 import Main from '../pages/Main';
-import BookingDetail from '../pages/Main/BookingDetail';
-
+import Explore from '../pages/Main/Explore';
+import BookingDetail from '../pages/Main/BookingDetail'
 const Router = () => {
   return (
     <BrowserRouter>
@@ -25,6 +25,7 @@ const Router = () => {
         </Route>
 
         <Route path="/main" element={<Main />}>
+          <Route path="explore" element={<Explore />} />
           <Route path="booking-detail" element={<BookingDetail />} />
         </Route>
 
