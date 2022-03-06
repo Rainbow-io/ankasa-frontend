@@ -1,8 +1,12 @@
+// import internal modules
 import React from 'react'
 
-const index = () => {
+// import external modules
+import './input.css';
+
+const index = ({ type, ...props }) => {
   return (
-    <div>index</div>
+    <input type={type ? type : "text"} {...props} />
   )
 }
 
