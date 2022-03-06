@@ -6,7 +6,7 @@ import './bookingdetail.css'
 
 const BookingDetail = () => {
     return (
-        <div className="card-background">
+        <div className="card-background-bookingdetail">
             {/* mobile */}
             <div className="px-3 py-5 mobile-content d-lg-none">
                 <div className="mb-5 booking-pass">
