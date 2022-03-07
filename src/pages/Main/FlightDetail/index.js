@@ -1,17 +1,14 @@
 import React from 'react'
-import Footer from '../../components/module/Footer'
-import Navbar from '../../components/module/Navbar'
 import styles from './flightdetail.module.css'
-import dangerIcon from '../../assets/danger-icon.svg'
-import garudaLogo from '../../assets/garuda-logo.svg'
-import fsIcon from '../../assets/flight-small-icon.svg'
-import dotIcon from '../../assets/dot.svg'
-import checkListIcon from '../../assets/checklist-icon.svg'
+import dangerIcon from '../../../assets/danger-icon.svg'
+import garudaLogo from '../../../assets/garuda-logo.svg'
+import fsIcon from '../../../assets/flight-small-icon.svg'
+import dotIcon from '../../../assets/dot.svg'
+import checkListIcon from '../../../assets/checklist-icon.svg'
 
 const FlightDetail = () => {
     return (
         <div className=''>
-            <Navbar />
             <div className={`${styles.bg}`}>
                 <div className='mx-5'>
                     <div className="title d-flex justify-content-between text-white pt-5">
@@ -33,21 +30,21 @@ const FlightDetail = () => {
                             </div>
                             <div className="person-name"><p>Phone Number</p>
                                 <h6 className={`${styles.uline} pb-2`}>
-                                <div className="dropdown">
-                                    <button className="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                        +62
-                                    </button>
-                                    <ul className='dropdown-menu'>
-                                        <li><p className='dropdown-item'>+60</p></li>
-                                        <li><p className='dropdown-item'>+65</p></li>
-                                    </ul>
-                                </div>
+                                    <div className="dropdown">
+                                        <button className="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                            +62
+                                        </button>
+                                        <ul className='dropdown-menu'>
+                                            <li><p className='dropdown-item'>+60</p></li>
+                                            <li><p className='dropdown-item'>+65</p></li>
+                                        </ul>
+                                    </div>
                                 </h6>
                             </div>
                             <div className={`${styles.border15} bg-danger bg-opacity-25 warning mt-3 p-2`}> <img className='px-2' src={dangerIcon} alt="" />Make sure the customer data is correct.</div>
                         </div>
                         <div className={`${styles.w40} ${styles.border15} ${styles.hfitcontent} p-4 detail mt-4 border bg-white`}>
-                            <div className="airlines d-flex "><img src={garudaLogo} alt="" /> <h6 className='ms-4 align-self-center'>Garuda Indonesia</h6></div>    
+                            <div className="airlines d-flex "><img src={garudaLogo} alt="" /> <h6 className='ms-4 align-self-center'>Garuda Indonesia</h6></div>
                             <div className="flight-route my-3 d-flex">
                                 <h5 className='departure'>Medan (IDN)</h5>
                                 <img className='mx-3' src={fsIcon} alt="" />
@@ -63,8 +60,8 @@ const FlightDetail = () => {
                                 <h6 className='text-primary'><img className='me-2' src={checkListIcon} alt="" />Can reschedule</h6>
                             </div>
                             <div className="total-payment d-flex justify-content-between mt-4">
-                            <h5>Total Payment</h5>
-                            <h4 className='text-primary'>$ 145,00 D</h4>
+                                <h5>Total Payment</h5>
+                                <h4 className='text-primary'>$ 145,00 D</h4>
                             </div>
                         </div>
                     </div>
@@ -120,8 +117,18 @@ const FlightDetail = () => {
                 <div className={`${styles.w55} d-flex justify-content-center`}>
                     <button className='btn btn-primary mb-5'><h5>Proceed to Payment</h5></button>
                 </div>
+                {/* <div className="collapse navbar-collapse">
+                    <ul className='navbar-nav'>
+                        <li className='nav-item dropdown'>
+                            Dropdown
+                        </li>
+                        <ul className='dropdown-menu dropdown-menu-dark'>
+                            <li><p className='1'></p></li>
+                            <li><p className='2'></p></li>
+                        </ul>
+                    </ul>
+                </div> */}
             </div>
-            <Footer />
         </div>
     )
 }

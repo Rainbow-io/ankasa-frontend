@@ -1,9 +1,19 @@
-import React from 'react'
+// import internal modules
+import { combineReducers } from "redux";
 
-const index = () => {
-  return (
-    <div>index</div>
-  )
-}
+// import external modules
+import login from './login';
+import signUp from './signUp';
+import Flights from './flights'
+import Users from './users'
+import UserID from './userByID'
 
-export default index
+const rootReducers = combineReducers({
+  login,
+  signUp,
+  Flights,
+  Users,
+  UserID
+})
+
+export default rootReducers

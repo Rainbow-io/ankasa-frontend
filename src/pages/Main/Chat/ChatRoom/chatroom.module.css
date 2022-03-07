@@ -1,0 +1,30 @@
+.con{
+    height: 130vh;
+}
+
+.chatCon{
+    height: 90%;
+    border-radius: 2rem;
+    margin-top: 2.5%;
+}
+
+.conzz{
+    height: 70%;
+    overflow-y: auto;
+}
+
+.pic{
+    height: 4rem;
+    width: 4rem;
+    border-radius: 1rem;
+}
+
+.receiverHeader{
+    box-shadow: 0px 20px 40px rgba(78, 69, 69, 0.05);
+    background-color: gainsboro;
+    border-radius: 1rem;
+}
+
+.radius{
+    border-radius: 1rem;
+}

@@ -1,0 +1,55 @@
+.card-background {
+    background-color: #F5F6FA;
+}
+
+.card-white {
+    background: #FFFFFF;
+    border-radius: 15px;
+}
+
+.border-inner {
+    border-left: 1px solid #E5E5E5;
+    border-top: 1px solid #E5E5E5;
+    border-bottom: 1px solid #E5E5E5;
+    border-right: 1px dashed #E5E5E5;
+    box-sizing: border-box;
+    border-radius: 7.5px;
+}
+
+.border-barcode {
+    border-right: 1px solid #E5E5E5;
+    border-top: 1px solid #E5E5E5;
+    border-bottom: 1px solid #E5E5E5;
+    box-sizing: border-box;
+    border-radius: 7.5px;
+}
+
+.flag-white {
+    background: #FFFFFF;
+    box-shadow: 0px 2px 4px rgba(14, 63, 108, 0.19);
+    border-radius: 12px;
+}
+
+.btn-issued {
+    background: #4FCF4D;
+    border-radius: 6px;
+}
+
+
+.border-content-unread {
+    background: #F7FBFF;
+    border: 1px solid #2395FF;
+    box-sizing: border-box;
+    border-radius: 13px;
+}
+
+.border-content-read {
+    background: #FFFFFF;
+    border: 1px solid #D7D7D7;
+    box-sizing: border-box;
+    border-radius: 13px;
+}
+
+.border-content-read, .border-content-unread, .clear {
+    cursor: pointer;
+}
