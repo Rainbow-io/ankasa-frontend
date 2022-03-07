@@ -1,15 +1,24 @@
 // import internal modules
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import {decodeToken} from 'react-jwt'
 
 // import external modules
+import {getUserID} from '../../../redux/actions/userByID';
 import Button from '../../../components/base/Button';
 import Input from '../../../components/base/Input';
 import ModalPic from '../../../components/module/ModalPic';
 import './profile.css';
+import SidebarProfile from '../../../components/module/SidebarProfile';
 
 const Profile = () => {
+    const tokenUser = localStorage.getItem('token');
+    const userInfo = decodeToken(tokenUser)
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+
+    const userDetailData = useSelector((state) => state.UserID)
 
     const [formProfile, setFormProfile] = useState({
         email: '',
@@ -22,7 +31,7 @@ const Profile = () => {
 
     const [formProfileError, setFormProfileError] = useState(false);
     const [loading, setLoading] = useState(false);
-    const [showModalPic, setShowModalPic] = useState(false)
+    const [showModalPic, setShowModalPic] = useState(false);
 
     const handleChange = (e) => {
         setFormProfile({
@@ -59,6 +68,11 @@ const Profile = () => {
         return errors;
     }
 
+    useEffect(() => {
+        dispatch((getUserID(userInfo.id)))
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
+
     const handleSubmit = (e) => {
         e.preventDefault();
         const resultValidate = validateProfile(formProfile);
@@ -86,77 +100,7 @@ const Profile = () => {
         <Fragment>
             <div className="body-background">
                 <div className="d-md-flex px-5 py-5 wrapper-content">
-                    <div className="d-none d-md-block bg-white profile-left flex-fill">
-                        <div className="px-3 py-5 d-flex flex-column align-items-center profile-left-content">
-                            <div className="content-upper text-center">
-                                <div className="photo">
-                                    <img src={require("../../../assets/mike-kowalski-mybooking.png")} alt="" />
-                                </div>
-                                <div onClick={()=>openModal(true)} className="px-3 py-2 my-3 select-photo-button">
-                                    <div className="fw-bold text-primary">Select Photo</div>
-                                </div>
-                                <div className="name">
-                                    <div className="fw-bold">Mike Kowalski</div>
-                                </div>
-                                <div className="address">
-                                    <div className="text-muted fs-6">Medan, Indonesia</div>
-                                </div>
-                            </div>
-                            <div className="d-none d-md-block my-3 content-middle">
-                                <div className="d-flex justify-content-between">
-                                    <div className="cards">
-                                        <div className="fw-bold">Cards</div>
-                                    </div>
-                                    <div className="add">
-                                        <div className="fw-bold text-primary">+Adds</div>
-                                    </div>
-                                </div>
-                                <div className="bluebox">
-                                    <div className="px-3 py-2 bluebox-content">
-                                        <div className="bluebox-upper">
-                                            <div className="numberscard">
-                                                <div className="fw-bold text-white">4441 1235 5512 5551</div>
-                                            </div>
-                                        </div>
-                                        <div className="d-flex bluebox-lower justify-content-between">
-                                            <div className="card-brand">
-                                                <div className="text-white">X Card</div>
-                                            </div>
-                                            <div className="balance-current">
-                                                <div className="text-white">$ 1,440.2</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="content-lower">
-                                <div className="profile d-flex my-3">
-                                    <div className="logo-profile me-3">
-                                        <img src={require("../../../assets/icons/profile-mybooking.svg").default} alt="" />
-                                    </div>
-                                    <div>Profile</div>
-                                </div>
-                                <div className="my-review d-flex">
-                                    <div className="logo-myreview me-3">
-                                        <img src={require("../../../assets/icons/my-review-bookingdetail.svg").default} alt="" />
-                                    </div>
-                                    <div>My Review</div>
-                                </div>
-                                <div className="settings d-flex my-3">
-                                    <div className="logo-settings me-3">
-                                        <img src={require("../../../assets/icons/settings-mybooking.svg").default} alt="" />
-                                    </div>
-                                    <div>Settings</div>
-                                </div>
-                                <div onClick={() => handleLogout()} className="logout d-flex">
-                                    <div className="logo-logout me-3">
-                                        <img src={require("../../../assets/icons/logout-mybooking.svg").default} alt="" />
-                                    </div>
-                                    <div>Logout</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <SidebarProfile openModal={openModal} />
                     <div className="d-none d-md-block profile-right ms-3 w-100">
                         <div className="bg-white profile-right">
                             <div className="py-3 px-3 profile-right-content">
@@ -181,6 +125,7 @@ const Profile = () => {
                                                         name="email"
                                                         onChange={handleChange}
                                                         value={formProfile.email}
+                                                        placeholder={userDetailData.data?.email}
                                                         className="w-100 border-0 border-bottom border-2 px-3" />
                                                 </div>
                                                 <div className="phone-form mt-3">
@@ -191,6 +136,7 @@ const Profile = () => {
                                                         name="phonenumber"
                                                         onChange={handleChange}
                                                         value={formProfile.phonenumber}
+                                                        placeholder={userDetailData.data?.phone}
                                                         className="w-100 border-0 border-bottom px-3" />
                                                 </div>
                                                 <div className="d-flex mt-5 justify-content-end account-settings">
@@ -210,6 +156,7 @@ const Profile = () => {
                                                         name="username"
                                                         onChange={handleChange}
                                                         value={formProfile.username}
+                                                        placeholder={userDetailData.data?.username}
                                                         className="w-100 border-0 border-bottom px-3" />
                                                 </div>
                                                 <div className="city-form mt-3">
@@ -220,6 +167,7 @@ const Profile = () => {
                                                         name="city"
                                                         onChange={handleChange}
                                                         value={formProfile.city}
+                                                        placeholder={userDetailData.data?.city}
                                                         className="w-100 border-0 border-bottom px-3" />
                                                 </div>
                                                 <div className="address-form mt-3">
@@ -230,6 +178,7 @@ const Profile = () => {
                                                         name="address"
                                                         onChange={handleChange}
                                                         value={formProfile.address}
+                                                        placeholder={userDetailData.data?.address}
                                                         className="w-100 border-0 border-bottom px-3" />
                                                 </div>
                                                 <div className="username-form mt-3">
@@ -240,6 +189,7 @@ const Profile = () => {
                                                         name="postcode"
                                                         onChange={handleChange}
                                                         value={formProfile.postcode}
+                                                        placeholder={userDetailData.data?.postcode}
                                                         className="w-100 border-0 border-bottom px-3" />
                                                 </div>
                                             </div>
@@ -410,7 +360,7 @@ const Profile = () => {
                                     </div>
                                 </div>
                                 <div className="button-wrapper d-flex justify-content-end">
-                                    <Button onClick={handleSubmit} className="my-5 py-3 w-25 text-center text-white fw-bold btn-save">Save</Button>
+                                    <Button isLoading={loading} onClick={handleSubmit} className="my-5 py-3 w-25 text-center text-white fw-bold btn-save">Save</Button>
                                 </div>
                             </div>
                         </div>

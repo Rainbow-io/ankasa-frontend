@@ -3,8 +3,11 @@ import Logo from '../../../assets/plane.svg'
 import Download from '../../../assets/downapp.svg'
 import SocialIcon from '../../../assets/socialicon.svg'
 import styles from './footer.module.css'
+import { useNavigate } from 'react-router-dom'
 
 const Footer = () => {
+    const navigate = useNavigate();
+
     return (
         <div className={`${styles.footer} footer container-fluid pt-5 pb-4 bg-white d-lg-block d-none`}>
             <div className='mx-5'>
@@ -20,10 +23,10 @@ const Footer = () => {
                     <div className="right-foot w-75 d-flex justify-content-between">
                         <div className="feature d-flex flex-column">
                             <h5 className='mb-4'>Features</h5>
-                            <p className='text-secondary'>Find Ticket</p>
-                            <p className='text-secondary'>My Booking</p>
-                            <p className='text-secondary'>Chat</p>
-                            <p className='text-secondary'>Notification</p>
+                            <p className={`${styles.userPointer} text-secondary`} onClick={()=>navigate("/main/find-ticket")}>Find Ticket</p>
+                            <p className={`${styles.userPointer} text-secondary`} onClick={()=>navigate("/main/my-booking")}>My Booking</p>
+                            <p className={`${styles.userPointer} text-secondary`} onClick={()=>navigate("/main/chat")}>Chat</p>
+                            <p className={`${styles.userPointer} text-secondary`} onClick={()=>navigate("/main/notification")}>Notification</p>
                         </div>
                         <div className="download-app text-center">
                             <h5 className='mb-4'>Download Angkasa app</h5>
