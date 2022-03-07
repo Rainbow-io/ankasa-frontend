@@ -14,7 +14,7 @@ import Kucing from '../../../assets/kucinggarong.jpeg'
 const ChatRoom = () => {
     const { id } = useParams()
     const [message, setMessage] = useState("")
-    // const [chat, setChat] = useState([])
+    const [chat, setChat] = useState([])
     const token = localStorage.getItem('token')
     const { username } = decodeToken(token)
     console.log(username);
@@ -24,57 +24,59 @@ const ChatRoom = () => {
     useEffect(() => {
         dispatch(getUserID(id))
     }, [])
+
     const handleChange = (e) => {
         setMessage(e.target.value)
     }
 
     const handleSubmit = (e) => {
         if (e.key === "Enter") {
-            // socket.emit("message", {sender: username, receiver: receiver.username, message})
+            socket.emit("message", {sender: username, receiver: receiver.data.username, message})
             setMessage("")
         }
     }
 
     //CHAT DUMMIESSSSZZZZ
-    const chat = [{
-        sender: username,
-        receiver: receiver.data.username,
-        message: "hai"
-    }, {
-        sender: receiver.data.username,
-        receiver: username,
-        message: "hai juga cintaku<3"
-    }, {
-        sender: username,
-        receiver: receiver.data.username,
-        message: "ah kamu gombal"
-    }, {
-        sender: receiver.data.username,
-        receiver: username,
-        message: "ayo makan warteg"
-    }, {
-        sender: username,
-        receiver: receiver.data.username,
-        message: "dibayarin gak?"
-    }, {
-        sender: username,
-        receiver: receiver.data.username,
-        message: "kalo ngga, aku gamau :'( aku bokek"
-    }, {
-        sender: receiver.username,
-        receiver: username,
-        message: "cuih gembellllll"
-    }
-    ]
-    console.log(chat);
+    // const chat = [{
+    //     sender: username,
+    //     receiver: receiver.data.username,
+    //     message: "hai"
+    // }, {
+    //     sender: receiver.data.username,
+    //     receiver: username,
+    //     message: "hai juga cintaku<3"
+    // }, {
+    //     sender: username,
+    //     receiver: receiver.data.username,
+    //     message: "ah kamu gombal"
+    // }, {
+    //     sender: receiver.data.username,
+    //     receiver: username,
+    //     message: "ayo makan warteg"
+    // }, {
+    //     sender: username,
+    //     receiver: receiver.data.username,
+    //     message: "dibayarin gak?"
+    // }, {
+    //     sender: username,
+    //     receiver: receiver.data.username,
+    //     message: "kalo ngga, aku gamau :'( aku bokek"
+    // }, {
+    //     sender: receiver.username,
+    //     receiver: username,
+    //     message: "cuih gembellllll"
+    // }
+    // ]
+    // console.log(chat);
 
     // useEffect(()=>{
-    //     socket.on("message", (data) => {
-    //         setChat([...chat, {sender: data.sender, 
-    //             receiver: data.receiver, 
-    //             message: data.message}])
-    //      localStorage.setItem(`chat ${receiver.data.username} ${username}`, JSON.stringify(chat))
-    //     })
+ 
+    socket.on("message", (data) => {
+            setChat([...chat, {sender: data.sender, 
+                receiver: data.receiver, 
+                message: data.message}])
+         // localStorage.setItem(`chat ${receiver.data.username} ${username}`, JSON.stringify(chat))
+        })
     // }, [])
 
     return (
