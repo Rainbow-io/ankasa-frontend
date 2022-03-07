@@ -1,11 +1,9 @@
 import React, { useEffect } from 'react'
-import Footer from '../../components/module/Footer'
-import Navbar from '../../components/module/Navbar'
 import styles from './chat.module.css'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
-import { getUsers } from '../../redux/actions/users';
-import Kucing from '../../assets/kucinggarong.jpeg'
+import { getUsers } from '../../../redux/actions/users';
+import Kucing from '../../../assets/kucinggarong.jpeg'
 
 
 const Chat = () => {
@@ -47,11 +45,11 @@ const Chat = () => {
 
     useEffect(() => {
         dispatch(getUsers())
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     return (
         <main className={`d-flex flex-column ${styles.con}`}>
-            <Navbar />
             <main className={`container-fluid g-0 bg-light p-lg-5 flex-fill`}>
                 <div className={`w-75 d-flex flex-column mx-auto bg-white ${styles.chatCon} p-lg-5`}>
                     <h5 className="text-primary mb-lg-3">Chat</h5>
@@ -82,7 +80,6 @@ const Chat = () => {
                     </div>
                 </div>
             </main>
-            <Footer />
         </main>
     )
 }

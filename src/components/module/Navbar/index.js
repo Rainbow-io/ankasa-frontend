@@ -19,6 +19,7 @@ const Navbar = () => {
     if(token){
       socket.emit("User ID", username)
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [token])
 
   return (

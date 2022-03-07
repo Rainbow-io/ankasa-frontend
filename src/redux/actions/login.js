@@ -41,7 +41,7 @@ export const LoginUser = (loginData, setLoading, navigate) => {
         .catch((err) => {
             setLoading(false)
             if (err.response !== undefined) {
-                const message = err.response.data.message
+                const message = err.response.data?.message
                 dispatch(LoginUserError(message))
             } else {
                 dispatch(LoginUserError("Network Error"))

@@ -1,18 +1,16 @@
 import React, { Fragment, useEffect, useState } from 'react'
-import Navbar from '../../components/module/Navbar'
 import styles from './findtix.module.css'
-import Plane2 from '../../assets/plane2.svg'
-import Plane3 from '../../assets/plane3.svg'
-import PlaneTix from '../../assets/planeTix.svg'
-import Meal from '../../assets/burger.svg'
-import Luggage from '../../assets/luggage.svg'
-import Wifi from '../../assets/wifi.svg'
-import Input from '../../components/module/Input'
-import Footer from '../../components/module/Footer'
+import Plane2 from '../../../assets/plane2.svg'
+import Plane3 from '../../../assets/plane3.svg'
+import PlaneTix from '../../../assets/planeTix.svg'
+import Meal from '../../../assets/burger.svg'
+import Luggage from '../../../assets/luggage.svg'
+import Wifi from '../../../assets/wifi.svg'
+import Input from '../../../components/module/Input'
 import ReactPaginate from 'react-paginate'
 import { useSearchParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
-import { getFlights } from '../../redux/actions/flights';
+import { getFlights } from '../../../redux/actions/flights';
 
 const FindTicket = () => {
 
@@ -50,6 +48,7 @@ const FindTicket = () => {
     //get all tickets
     useEffect(() => {
         dispatch(getFlights(form))
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [params])
 
     //pagination config
@@ -122,6 +121,7 @@ const FindTicket = () => {
     }
 
     //transit
+    // eslint-disable-next-line no-unused-vars
     const handleRadioTransit = (e) => {
         console.log(e.target.value);
     }
@@ -159,7 +159,6 @@ const FindTicket = () => {
 
     return (
         <Fragment>
-            <Navbar />
             <main className={`container-fluid g-0 bg-light ${styles.con}`}>
                 <header className={`${styles.searchHeader} d-flex flex-lg-row flex-column justify-content-between`}>
                     <img src={Plane2} className={`${styles.plane2}`} alt="" />
@@ -545,7 +544,6 @@ const FindTicket = () => {
                 </div>
 
             </main>
-            <Footer />
         </Fragment>
     )
 }
