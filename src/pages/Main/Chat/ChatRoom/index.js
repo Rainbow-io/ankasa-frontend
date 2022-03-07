@@ -22,7 +22,7 @@ const ChatRoom = () => {
     console.log(receiver);
     useEffect(() => {
         dispatch(getUserID(id))
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     const handleChange = (e) => {
@@ -31,7 +31,7 @@ const ChatRoom = () => {
 
     const handleSubmit = (e) => {
         if (e.key === "Enter") {
-            socket.emit("message", {sender: username, receiver: receiver.data.username, message})
+            socket.emit("message", { sender: username, receiver: receiver.data.username, message })
             setMessage("")
         }
     }
@@ -70,13 +70,15 @@ const ChatRoom = () => {
     // console.log(chat);
 
     // useEffect(()=>{
- 
+
     socket.on("message", (data) => {
-            setChat([...chat, {sender: data.sender, 
-                receiver: data.receiver, 
-                message: data.message}])
-         // localStorage.setItem(`chat ${receiver.data.username} ${username}`, JSON.stringify(chat))
-        })
+        setChat([...chat, {
+            sender: data.sender,
+            receiver: data.receiver,
+            message: data.message
+        }])
+        // localStorage.setItem(`chat ${receiver.data.username} ${username}`, JSON.stringify(chat))
+    })
     // }, [])
 
     return (
@@ -92,14 +94,15 @@ const ChatRoom = () => {
                             <div
                                 key={index}
                                 className={`d-flex w-100 mb-lg-3`}>
-                                {chat.receiver === receiver.data.username ?
+                                {(chat.receiver === receiver.data.username && chat.sender === username) && (
                                     <div className={`w-100 d-flex bg-secondary text-white p-3 justify-content-end ${styles.radius}`}>
                                         <h6 className="text-start">{chat.message}</h6>
-                                    </div>
-                                    :
+                                    </div>)
+                                }
+                                {(chat.receiver === username && chat.sender === receiver.data.username) && (
                                     <div className={`w-100 d-flex bg-primary p-3 justify-content-start ${styles.radius}`}>
                                         <h6 className="text-white text-start">{chat.message}</h6>
-                                    </div>
+                                    </div>)
                                 }
 
                             </div>
