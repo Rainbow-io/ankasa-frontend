@@ -39,7 +39,8 @@ const FindTicket = () => {
         class: '',
         transit: '',
         arrival_type: '',
-        depature_type: ''
+        depature_type: '',
+        date: null
     })
 
     const dispatch = useDispatch()
@@ -193,6 +194,8 @@ const FindTicket = () => {
                                 <Input
                                     className={`text-white mt-0 mb-3 ${styles.input1}`}
                                     type="date"
+                                    name="date"
+                                    onChange={handleChange}
                                 />
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-dot text-white" viewBox="0 0 16 16">
                                     <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z" />
