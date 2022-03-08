@@ -1,14 +1,15 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from './flightdetail.module.css'
+import Button from '../../../components/base/Button'
 import dangerIcon from '../../../assets/danger-icon.svg'
 import fsIcon from '../../../assets/flight-small-icon.svg'
 import dotIcon from '../../../assets/dot.svg'
 import checkListIcon from '../../../assets/checklist-icon.svg'
 import PassengerDetail from '../../../components/module/PassengerDetailBox'
 import Input from '../../../components/module/Input'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { getFlightDetail } from '../../../redux/actions/flight-detail'
 import { decodeToken } from 'react-jwt'
@@ -16,19 +17,62 @@ import { decodeToken } from 'react-jwt'
 const FlightDetail = () => {
     const { id } = useParams()
     const dispatch = useDispatch()
+    const qty = localStorage.getItem('qty')
+    // console.log('qty',qty);
     const dataFlightDetail = useSelector((state => state.FlightDetail))
     const [resData] = dataFlightDetail.data
     // console.log(resData,'awwwwwwwwwwwwwwwwwwwwwwww');
     const tokenUser = localStorage.getItem('token');
     const userInfo = decodeToken(tokenUser)
-    console.log(userInfo, 'infoooooooooooooooooooo');
+    // console.log(userInfo, 'infoooooooooooooooooooo');
 
+    const navigate = useNavigate()
+
+    const passenger = useSelector((state) => state.PostBookingList)
+    const [formPassenger, setFormPassenger] = useState({
+        id: resData?.id,
+        idusers: tokenUser?.id,
+        list_passenger: "",
+        departure: resData?.departure,
+        arrival: resData?.arrival,
+        date: "Sunday, 15 August 2020",
+        arrival_time: "15:21",
+        departure_time: "12:33",
+        airline: resData?.airline,
+        logo: "https://3.bp.blogspot.com/-kfqmZ6swf14/UPkoWbasV_I/AAAAAAAAFLQ/7DrmTWFM6sQ/s1600/Logo+Garuda+Indonesia.jpg",
+        price: resData?.price * qty
+    })
+
+    const validatePassenger = (value) => {
+        const error = {};
+        if(!value.fullname) {
+            error.fullname = "Fullname Required"
+        }
+    }
+
+    const handleChange = (e) => {
+        setFormPassenger({
+            ...formPassenger,
+            [e.target.name]: e.target.value
+        })
+    }
+
+
+    const handleClick = () => {
+        navigate('/main/booking-detail')
+    }
+    
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const resultValidate = validatePassenger(formPassenger);
+        setFormPassenger(resultValidate);
+        handleClick(resultValidate);
+    }
 
     useEffect(() => {
         dispatch(getFlightDetail(id))
     }, [])
 
-    const qty = localStorage.getItem('qty')
 
     return (
         <div className=''>
@@ -73,15 +117,15 @@ const FlightDetail = () => {
                         </div>
                         <div className={`${styles.w40} ${styles.border15} ${styles.hfitcontent} p-4 detail mt-4 border bg-white`}>
                             <div className="airlines d-flex ">
-                                {(resData?.airline === 'LionAir' && 
-                                <img className={`${styles.maxwidth} d-lg-block d-none`}
-                                    src="https://th.bing.com/th/id/R.fdce7f1ff0542c5b02381fe01d2168bf?rik=jKbM7zx19MHxIA&riu=http%3a%2f%2flogos-download.com%2fwp-content%2fuploads%2f2016%2f05%2fLion_Air_logo.png&ehk=yo%2bq6Ct8YaWtmU1ju4kw2yRfLt4FoKe4KdYMDkvB3tw%3d&risl=&pid=ImgRaw&r=0" alt='' />)
-                                || (resData?.airline === 'Airasia' && 
-                                <img className={`${styles.maxwidth} d-lg-block d-none`} 
-                                src="https://th.bing.com/th/id/R.1f96c8c723dcc01c11b102f4dc386867?rik=G0OuoXUyabTjMA&riu=http%3a%2f%2flofrev.net%2fwp-content%2fphotos%2f2017%2f04%2fair_asia_logo_free.jpg&ehk=zgaIIjf3IJChiEHc0YKG9cK%2bc%2bnh21%2bkvfV2riVXcCw%3d&risl=&pid=ImgRaw&r=0" alt='' />)
-                                || (resData?.airline === 'Airasia' && 
-                                <img className={`${styles.maxwidth} d-lg-block d-none`} 
-                                src="https://3.bp.blogspot.com/-kfqmZ6swf14/UPkoWbasV_I/AAAAAAAAFLQ/7DrmTWFM6sQ/s1600/Logo+Garuda+Indonesia.jpg" alt='' />)
+                                {(resData?.airline === 'LionAir' &&
+                                    <img className={`${styles.maxwidth} d-lg-block d-none`}
+                                        src="https://th.bing.com/th/id/R.fdce7f1ff0542c5b02381fe01d2168bf?rik=jKbM7zx19MHxIA&riu=http%3a%2f%2flogos-download.com%2fwp-content%2fuploads%2f2016%2f05%2fLion_Air_logo.png&ehk=yo%2bq6Ct8YaWtmU1ju4kw2yRfLt4FoKe4KdYMDkvB3tw%3d&risl=&pid=ImgRaw&r=0" alt='' />)
+                                    || (resData?.airline === 'Airasia' &&
+                                        <img className={`${styles.maxwidth} d-lg-block d-none`}
+                                            src="https://th.bing.com/th/id/R.1f96c8c723dcc01c11b102f4dc386867?rik=G0OuoXUyabTjMA&riu=http%3a%2f%2flofrev.net%2fwp-content%2fphotos%2f2017%2f04%2fair_asia_logo_free.jpg&ehk=zgaIIjf3IJChiEHc0YKG9cK%2bc%2bnh21%2bkvfV2riVXcCw%3d&risl=&pid=ImgRaw&r=0" alt='' />)
+                                    || (resData?.airline === 'Airasia' &&
+                                        <img className={`${styles.maxwidth} d-lg-block d-none`}
+                                            src="https://3.bp.blogspot.com/-kfqmZ6swf14/UPkoWbasV_I/AAAAAAAAFLQ/7DrmTWFM6sQ/s1600/Logo+Garuda+Indonesia.jpg" alt='' />)
                                 }
                                 <h3 className='ms-4 align-self-center'>{resData?.airline}</h3>
                             </div>
@@ -106,7 +150,42 @@ const FlightDetail = () => {
                         </div>
                     </div>
                     <div className={`mid-content pt-5 `}>
-                        <PassengerDetail />
+                        {/* <PassengerDetail /> */}
+                        <h4>Passenger Details</h4>
+                        <div className={`${styles.border15} ${styles.w55} p-3`}>
+                            <div className={`${styles.border15} bg-primary bg-opacity-25 d-flex justify-content-between px-2`}>
+                                <div className={`align-self-center`}>Passenger : {qty} Adult</div>
+                                <div className="switcher-box d-flex py-2">
+                                    Same as contact person
+                                    <div className="form-check form-switch ps-5">
+                                        <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="person-title mt-3"><p>Title</p>
+                                <h6 className={`${styles.uline} pb-2`}>Mr. / Mrs </h6>
+                            </div>
+                            <div className="person-name py-3"><p>Full Name</p>
+                                <Input
+                                value={formPassenger.fullname}
+                                name="fullname"
+                                type="text"
+                                className='w-100 border-0 border-bottom px-3'
+                                onChange={handleChange}
+                                />
+                            </div>
+                            <div className="nationality"><p>Nationality</p>
+                                <div className="dropdown">
+                                    <button className="btn dropdown-toggle fw-bold" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Indonesia
+                                    </button>
+                                    <ul className='dropdown-menu'>
+                                        <li><p className='dropdown-item'>Malaysia</p></li>
+                                        <li><p className='dropdown-item'>Singapore</p></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div className={`py-5`}>
                         <h4>Passenger Details</h4>
@@ -127,7 +206,12 @@ const FlightDetail = () => {
                     </div>
                 </div>
                 <div className={`${styles.w55} d-flex justify-content-center`}>
-                    <button className='btn btn-primary mb-5'><h5>Proceed to Payment</h5></button>
+                    <Button
+                    onClick={handleSubmit}
+                    className='btn btn-primary mb-5'
+                    >
+                        <h5>Proceed to Payment</h5>
+                    </Button>
                 </div>
             </div>
         </div>
