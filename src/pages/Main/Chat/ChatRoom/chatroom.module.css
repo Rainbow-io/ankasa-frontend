@@ -1,11 +1,11 @@
 .con{
-    height: 130vh;
+    height: 80vh;
 }
 
 .chatCon{
-    height: 90%;
+    height: 65%;
     border-radius: 2rem;
-    margin-top: 2.5%;
+    margin-top: .1%;
 }
 
 .conzz{

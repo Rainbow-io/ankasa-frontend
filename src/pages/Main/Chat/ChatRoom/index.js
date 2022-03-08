@@ -19,7 +19,6 @@ const ChatRoom = () => {
     console.log(username);
     const dispatch = useDispatch()
     const receiver = useSelector((state) => state.UserID)
-    console.log(receiver);
     useEffect(() => {
         dispatch(getUserID(id))
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -70,14 +69,13 @@ const ChatRoom = () => {
     // console.log(chat);
 
     // useEffect(()=>{
-
     socket.on("message", (data) => {
         setChat([...chat, {
             sender: data.sender,
             receiver: data.receiver,
             message: data.message
         }])
-        // localStorage.setItem(`chat ${receiver.data.username} ${username}`, JSON.stringify(chat))
+        console.log(data);
     })
     // }, [])
 
