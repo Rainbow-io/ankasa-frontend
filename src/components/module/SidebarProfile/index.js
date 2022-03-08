@@ -31,7 +31,7 @@ const SidebarProfile = ({openModal}) => {
       <div className="px-3 py-5 d-flex flex-column align-items-center profile-left-content">
         <div className="content-upper text-center">
           <div className="photo">
-            <img src={require("../../../assets/mike-kowalski-mybooking.png")} alt="" />
+            <img className="rounded-pill border" src={userDetailData.data?.photo} width={100} height={100} alt="" />
           </div>
           <div onClick={() => openModal(true)} className="px-3 py-2 my-3 select-photo-button">
             <div className="fw-bold text-primary">Select Photo</div>

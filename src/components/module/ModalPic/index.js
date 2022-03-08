@@ -1,11 +1,15 @@
 // import internal modules
 import React, { useState } from 'react';
+import {useDispatch} from 'react-redux';
 
 // import external modules
+import {EditPicLink} from '../../../redux/actions/editPicLink';
+import Input from '../../base/Input/'
 import Button from '../../../components/base/Button';
 import './modalpic.css'
 
 const ModalPic = ({ openModal }) => {
+    const dispatch = useDispatch();
 
     const [loading, setLoading] = useState(false);
 
@@ -13,7 +17,19 @@ const ModalPic = ({ openModal }) => {
         picture: ""
     })
 
+    const [formPicLink, setFormPicLink] = useState({
+        pictureLink: ""
+    })
+
+    const handleChangePicLink = (e) => {
+        setFormPicLink({
+            ...formPicLink,
+            [e.target.name]: e.target.value
+        })
+    }
+
     const [formPicError, setFormPicError] = useState(false);
+    const [formPicLinkError, setFormPicLinkError] = useState(false);
 
     const formDataPic = new FormData()
     formDataPic.append("picture", formDataPicTemp.picture[0])
@@ -26,11 +42,34 @@ const ModalPic = ({ openModal }) => {
         }
     }
 
+    const validatePicLink = (values) => {
+        const errors = {};
+        if (!values.pictureLink) {
+            errors.pictureLink = "Please select a picture";
+            return errors;
+        }
+    }
+
     const handleSubmit = (e) => {
         e.preventDefault();
         const resultValidate = validatePic(formDataPicTemp.picture);
         setFormPicError(resultValidate);
         handleClick(resultValidate)
+    }
+
+    const handleSubmitPicLink = (e) => {
+        e.preventDefault();
+        const resultValidate = validatePicLink(formPicLink);
+        setFormPicLinkError(resultValidate);
+        handleClickPicLink(resultValidate)
+    }
+
+    const handleClickPicLink = (resultValidate) => {
+        if (resultValidate === undefined) {
+            setFormPicLinkError(false)
+            setLoading(true)
+            dispatch((EditPicLink(formPicLink, setLoading, openModal)))
+        }
     }
 
     const handleClick = (resultValidate) => {
@@ -40,7 +79,6 @@ const ModalPic = ({ openModal }) => {
             console.log(formDataPic)
         }
     }
-
     return (
         <div className="modal-wrapper">
             <div className="modal-inner">
@@ -59,11 +97,20 @@ const ModalPic = ({ openModal }) => {
                 ) : ''}
                 <div className="my-3 text-muted">Browse a Profile Picture</div>
                 <div className="text-primary">{formDataPicTemp.url ? '' : formPicError.picture}</div>
+                <div className="text-primary">{formPicLinkError.pictureLink}</div>
+                <Input
+                type="text"
+                name="pictureLink"
+                placeholder="or you can insert a live link picture here"
+                onChange={handleChangePicLink}
+                value={formPicLink.pictureLink}
+                className="my-3" />
+                <Button isLoading={loading} onClick={handleSubmitPicLink}>Upload</Button>
                 <form encType="multipart/form-data" onSubmit={(e) => handleSubmit(e)} className="d-flex flex-column">
                     <input type="file" onChange={(e) => setFormDataPicTemp({ ...formDataPicTemp, picture: e.currentTarget.files, url: URL.createObjectURL(e.target.files[0]) })} /><br />
                     <hr />
                     <div className="d-flex justify-content-end">
-                        <Button isLoading={loading} className="d-flex jumy-3 px-3 py-2 btn-upload text-white fw-bold" type="submit">Upload</Button>
+                        {/* <Button isLoading={loading} className="d-flex jumy-3 px-3 py-2 btn-upload text-white fw-bold" type="submit">Upload</Button> */}
                     </div>
                 </form>
             </div>

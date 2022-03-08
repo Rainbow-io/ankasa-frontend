@@ -6,6 +6,7 @@ import {decodeToken} from 'react-jwt'
 
 // import external modules
 import {getUserID} from '../../../redux/actions/userByID';
+import {EditBiodata} from '../../../redux/actions/editBiodata';
 import Button from '../../../components/base/Button';
 import Input from '../../../components/base/Input';
 import ModalPic from '../../../components/module/ModalPic';
@@ -23,7 +24,7 @@ const Profile = () => {
     const [formProfile, setFormProfile] = useState({
         email: '',
         phonenumber: '',
-        username: '',
+        fullname: '',
         city: '',
         address: '',
         postcode: '',
@@ -53,8 +54,8 @@ const Profile = () => {
         } else if (values.phonenumber.length < 11) {
             errors.phonenumber = "Phone number at least 11 digits";
         }
-        if (!values.username) {
-            errors.username = "Username is required";
+        if (!values.fullname) {
+            errors.fullname = "Username is required";
         }
         if (!values.city) {
             errors.city = "City is required";
@@ -84,7 +85,7 @@ const Profile = () => {
         if (Object.keys(resultValidate).length === 0) {
             setFormProfileError(false)
             setLoading(true)
-            console.log(formProfile)
+            dispatch(EditBiodata(formProfile, setLoading))
         }
     }
 
@@ -149,14 +150,14 @@ const Profile = () => {
                                             <div className="fw-bold mt-3">Biodata</div>
                                             <div className="biodata-form">
                                                 <div className="username-form mt-3">
-                                                    <div className="text-center my-3 text-primary">{formProfileError.username}</div>
-                                                    <div className="text-muted px-3">Username</div>
+                                                    <div className="text-center my-3 text-primary">{formProfileError.fullname}</div>
+                                                    <div className="text-muted px-3">Fullname</div>
                                                     <Input
                                                         type="text"
-                                                        name="username"
+                                                        name="fullname"
                                                         onChange={handleChange}
-                                                        value={formProfile.username}
-                                                        placeholder={userDetailData.data?.username}
+                                                        value={formProfile.fullname}
+                                                        placeholder={userDetailData.data?.fullname}
                                                         className="w-100 border-0 border-bottom px-3" />
                                                 </div>
                                                 <div className="city-form mt-3">
@@ -194,7 +195,7 @@ const Profile = () => {
                                                 </div>
                                             </div>
                                             <div className="button-wrapper d-flex justify-content-end">
-                                                <Button onClick={handleSubmit} className="my-5 py-3 w-25 text-center text-white fw-bold btn-save">Save</Button>
+                                                <Button isLoading={loading} onClick={handleSubmit} className="my-5 py-3 w-25 text-center text-white fw-bold btn-save">Save</Button>
                                             </div>
                                         </div>
                                     </div>
@@ -319,13 +320,13 @@ const Profile = () => {
                                 <div className="fw-bold mt-3">Biodata</div>
                                 <div className="biodata-form">
                                     <div className="username-form mt-3">
-                                        <div className="text-center my-3 text-primary">{formProfileError.username}</div>
-                                        <div className="text-muted px-3">Username</div>
+                                        <div className="text-center my-3 text-primary">{formProfileError.fullname}</div>
+                                        <div className="text-muted px-3">Fullname</div>
                                         <Input
                                             type="text"
                                             name="username"
                                             onChange={handleChange}
-                                            value={formProfile.username}
+                                            value={formProfile.fullname}
                                             className="w-100 border-0 border-bottom px-3" />
                                     </div>
                                     <div className="city-form mt-3">
