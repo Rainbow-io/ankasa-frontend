@@ -17,6 +17,7 @@ import FindTicket from '../pages/Main/FindTicket';
 import FlightDetail from '../pages/Main/FlightDetail';
 import MyBooking from '../pages/Main/MyBooking';
 import BookingDetail from '../pages/Main/BookingDetail';
+import Payment from '../pages/Main/Payment';
 import Profile from '../pages/Main/Profile';
 import Chat from '../pages/Main/Chat';
 import ChatRoom from '../pages/Main/Chat/ChatRoom';
@@ -40,6 +41,7 @@ const Router = () => {
           <Route path="flight-detail" element={<FlightDetail/>} />
           <Route path="my-booking" element={<MyBooking />} />
           <Route path="booking-detail" element={<BookingDetail />} />
+          <Route path="payment" element={<Payment />} />
           <Route path="profile" element={<Profile />} />
           <Route path="chat" element={<Chat/>} />
           <Route path="chat/:id" element={<ChatRoom/>} />
