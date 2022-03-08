@@ -30,6 +30,7 @@ export const getFlights = (form) => (dispatch) => {
             console.log(res);
             dispatch(getFlightsResponse(data));
             localStorage.setItem('qty', form.qty)
+            // localStorage.setItem('date', form.date)
         })
         .catch((err) => {
             const message = err.message;

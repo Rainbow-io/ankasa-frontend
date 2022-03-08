@@ -40,7 +40,7 @@ const Router = () => {
           <Route path="booking-detail" element={<BookingDetail />} />
           <Route path="notification" element={<Notification />} />
           <Route path="find-ticket" element={<FindTicket/>} />
-          <Route path="flight-detail" element={<FlightDetail/>} />
+          <Route path="flight-detail/:id" element={<FlightDetail/>} />
           <Route path="chat" element={<Chat/>} />
           <Route path="chat/:id" element={<ChatRoom/>} />
           <Route index element={<Navigate to="/main/explore" />} />

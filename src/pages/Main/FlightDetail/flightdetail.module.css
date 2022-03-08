@@ -21,3 +21,6 @@
 .hfitcontent{
     height: fit-content;
 }
+.maxwidth{
+    max-width: 10em;
+}

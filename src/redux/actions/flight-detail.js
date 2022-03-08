@@ -18,17 +18,17 @@ export const getFlightDetailError = (error) => {
     }
 }
 
-export const getFlightDetail = () => (dispatch) => {
+export const getFlightDetail = (id) => (dispatch) => {
     dispatch(getFlightDetailRequest());
     return axios({
         method: 'GET',
-        url: `https://ankasa-rainbow.herokuapp.com/booking/detail/9`
+        url: `https://ankasa-rainbow.herokuapp.com/booking/detail/${id}`
     })
         .then((res) => {
-            const data = res.data.data;
+            const data = res.data?.data;
             dispatch(getFlightDetailResponse(data));
-            console.log('resssssssssssssssssssssssss',res)
-            console.log('dataaaaaaaaaaaaaaaaaaaaaaaaaa',data)
+            // console.log('resssssssssssssssssssssssss',res)
+            // console.log('dataaaaaaaaaaaaaaaaaaaaaaaaaa',data)
         })
         .catch((err) => {
             const message = err.message;
