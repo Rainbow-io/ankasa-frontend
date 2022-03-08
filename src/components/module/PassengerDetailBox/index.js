@@ -1,5 +1,7 @@
 /* eslint-disable no-unused-vars */
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { getFlightDetail } from '../../../redux/actions/flight-detail'
 import Input from '../Input'
 import styles from './passengerdetail.module.css'
 
@@ -11,8 +13,14 @@ const PassengerDetail = () => {
     // const dropdownListClick = index => {
     //     setdropdown(index);
     // };
+    const dispatch = useDispatch()
+    const dataFlight = useSelector((state => state.data))
+    console.log('flighttttttttttttttttttttttttt',dataFlight);
 
     
+    useEffect(() => {
+        dispatch(getFlightDetail())
+    },[])
 
     return (
         <div>

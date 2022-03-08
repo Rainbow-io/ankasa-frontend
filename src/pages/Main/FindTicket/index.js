@@ -41,7 +41,7 @@ const FindTicket = () => {
         arrival_type: '',
         depature_type: ''
     })
-
+    
     const dispatch = useDispatch()
     const tickets = useSelector((state) => state.Flights)
     console.log(tickets);
