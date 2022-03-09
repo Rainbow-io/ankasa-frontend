@@ -19,6 +19,7 @@ import BookingDetail from '../pages/Main/BookingDetail';
 import Notification from '../pages/Main/Notification';
 import Chat from '../pages/Main/Chat';
 import ChatRoom from '../pages/Main/Chat/ChatRoom';
+import FlightDetailBodong from '../pages/Main/flight-detail-abal';
 
 const Router = () => {
   return (
@@ -41,6 +42,7 @@ const Router = () => {
           <Route path="find-ticket" element={<FindTicket/>} />
           <Route path="chat" element={<Chat/>} />
           <Route path="chat/:id" element={<ChatRoom/>} />
+          <Route path="flight-detail/:id" element={<FlightDetailBodong/>} />
           <Route index element={<Navigate to="/main/explore" />} />
         </Route>
 

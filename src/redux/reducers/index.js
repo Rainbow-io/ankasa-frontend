@@ -7,13 +7,15 @@ import signUp from './signUp';
 import Flights from './flights'
 import Users from './users'
 import UserID from './userByID'
+import PostFlight from './postFlightDetail'
 
 const rootReducers = combineReducers({
   login,
   signUp,
   Flights,
   Users,
-  UserID
+  UserID,
+  PostFlight
 })
 
 export default rootReducers
