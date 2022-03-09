@@ -30,7 +30,7 @@ export const PostFlight = ({formFlight, navigate}) => {
         .then((res) => {
             const resultPostSuccess = res.data?.message
             dispatch(PostFlightResponse(resultPostSuccess))
-            navigate(`/flight-detail/${formFlight[0].id}`)
+            navigate(`/main/flight-detail/${formFlight[0].id}`)
         })
         .catch((err) => {
             if (err.response !== undefined) {
