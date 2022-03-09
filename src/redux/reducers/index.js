@@ -9,6 +9,7 @@ import Users from './users';
 import UserID from './userByID';
 import EditPicLink from './editPicLink';
 import EditBiodata from './editBiodata';
+import GetBookingDetail from './getBookingDetail';
 
 const rootReducers = combineReducers({
   login,
@@ -17,7 +18,8 @@ const rootReducers = combineReducers({
   Users,
   UserID,
   EditPicLink,
-  EditBiodata
+  EditBiodata,
+  GetBookingDetail
 })
 
 export default rootReducers

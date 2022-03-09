@@ -1,12 +1,31 @@
 // import internal modules
-import React from 'react';
-import {useNavigate} from 'react-router-dom'
+import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 // import external modules
+import { GetBookingDetail } from '../../../redux/actions/getBookingDetail';
 import './mybooking.css'
 
 const MyBooking = () => {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+
+    const dataTickets = useSelector((state) => state.GetBookingDetail)
+
+    useEffect(() => {
+        dispatch((GetBookingDetail()))
+    }, [])
+
+    const handleNavigate = (status) => {
+        if (status === 'success') {
+            navigate("/main/booking-detail")
+        } else {
+            navigate("/main/payment")
+        }
+    }
+
     return (
         <div className="body-background">
             <div className="d-flex px-5 py-5 wrapper-content">
@@ -97,58 +116,37 @@ const MyBooking = () => {
                             </div>
                         </div>
                     </div>
-
-                    <div className="my-3 bg-white profile-right-lower">
-                        <div className="px-3 py-3 profile-right-middle-content">
-                            <div className="upper">
-                                <div className="time-section">
-                                    <div className="time-detail">
-                                        <div>Monday, 20 July '20 - 12:33</div>
-                                    </div>
-                                    <div className="fromto-detail d-flex">
-                                        <div className="fw-bold">IDN</div>
-                                        <img className="px-3" src={require("../../../assets/icons/to-plane-mybooking.svg").default} alt="" />
-                                        <div className="fw-bold">JPN</div>
-                                    </div>
-                                    <div className="airline-detail">
-                                        <div className="text-muted">Garuda Indonesia, AB-221</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <hr />
-                            <div className="d-flex lower justify-content-around">
-                                <div className="me-5 status text-muted fw-bold">Status</div>
-                                <div className="px-3 py-2 btn-status-payment fw-bold text-white">Waiting For Payment</div>
-                                <div className="ms-5 view-details text-primary fw-bold flex-grow-1 text-end" onClick={()=>navigate("/main/booking-detail")}>View Details<span><img className="px-1" src={require("../../../assets/icons/btndown-mybooking.svg").default} alt="" /></span></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="my-3 bg-white profile-right-lower">
-                        <div className="px-3 py-3 profile-right-middle-content">
-                            <div className="upper">
-                                <div className="time-section">
-                                    <div className="time-detail">
-                                        <div>Monday, 20 July '20 - 12:33</div>
-                                    </div>
-                                    <div className="fromto-detail d-flex">
-                                        <div className="fw-bold">IDN</div>
-                                        <img className="px-3" src={require("../../../assets/icons/to-plane-mybooking.svg").default} alt="" />
-                                        <div className="fw-bold">JPN</div>
-                                    </div>
-                                    <div className="airline-detail">
-                                        <div className="text-muted">Garuda Indonesia, AB-221</div>
+                    {dataTickets.data?.map((item, index) => (
+                        <div className="my-3 bg-white profile-right-lower" key={index}>
+                            <div className="px-3 py-3 profile-right-middle-content">
+                                <div className="upper">
+                                    <div className="time-section">
+                                        <div className="time-detail">
+                                            <div><span>{item.departure}</span><span>{item.departure_time}</span> </div>
+                                        </div>
+                                        <div className="fromto-detail d-flex">
+                                            <div className="fw-bold">{item.departure}</div>
+                                            <img className="px-3" src={require("../../../assets/icons/to-plane-mybooking.svg").default} alt="" />
+                                            <div className="fw-bold">{item.arrival}</div>
+                                        </div>
+                                        <div className="airline-detail">
+                                            <div className="text-muted">{item.airline}</div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <hr />
-                            <div className="d-flex lower justify-content-around">
-                                <div className="me-5 status text-muted fw-bold">Status</div>
-                                <div className="px-3 py-2 btn-status-issued fw-bold text-white">Eticket Issued</div>
-                                <div className="ms-5 view-details text-primary fw-bold flex-grow-1 text-end" onClick={()=>navigate("/main/booking-detail")}>View Details<span><img className="px-1" src={require("../../../assets/icons/btndown-mybooking.svg").default} alt="" /></span></div>
+                                <hr />
+                                <div className="d-flex lower justify-content-around">
+                                    <div className="me-5 status text-muted fw-bold">Status</div>
+                                    {
+                                        item.status === 'success' ?
+                                            (<div className="px-3 py-2 btn-status-issued fw-bold text-white">{item.status}</div>) : (<div className="px-3 py-2 btn-status-payment fw-bold text-white">{item.status}</div>)
+
+                                    }
+                                    <div className="ms-5 view-details text-primary fw-bold flex-grow-1 text-end" onClick={()=>handleNavigate(item.status)}>View Details<span><img className="px-1" src={require("../../../assets/icons/btndown-mybooking.svg").default} alt="" /></span></div>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    ))}
                 </div>
                 {/* Mobile */}
                 <div className="d-md-none w-100">

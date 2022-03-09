@@ -1,10 +1,23 @@
 // import internal modules
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 // import external modules
+import {GetBookingDetail} from '../../../redux/actions/getBookingDetail';
 import './bookingdetail.css'
 
 const BookingDetail = () => {
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+
+    const dataTickets = useSelector((state) => state.GetBookingDetail)
+
+    useEffect(() => {
+        dispatch((GetBookingDetail()))
+    }, [])
+
     return (
         <div className="card-background-bookingdetail">
             {/* mobile */}
@@ -126,6 +139,11 @@ const BookingDetail = () => {
                         </div>
                     </div>
                 </div>
+            </div>
+            <div>
+                {/* {dataTickets.data?.map((item, index) => (
+                    div
+                ))} */}
             </div>
         </div>
     )
