@@ -9,6 +9,7 @@ import Users from './users';
 import UserID from './userByID';
 import EditPicLink from './editPicLink';
 import EditBiodata from './editBiodata';
+import PostFlight from './postFlightDetail'
 
 const rootReducers = combineReducers({
   login,
@@ -17,7 +18,8 @@ const rootReducers = combineReducers({
   Users,
   UserID,
   EditPicLink,
-  EditBiodata
+  EditBiodata,
+  PostFlight
 })
 
 export default rootReducers

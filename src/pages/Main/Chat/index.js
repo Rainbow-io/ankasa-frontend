@@ -51,8 +51,8 @@ const Chat = () => {
     return (
         <main className={`d-flex flex-column ${styles.con}`}>
             <main className={`container-fluid g-0 bg-light p-lg-5 flex-fill`}>
-                <div className={`w-75 d-flex flex-column mx-auto bg-white ${styles.chatCon} p-lg-5`}>
-                    <h5 className="text-primary mb-lg-3">Chat</h5>
+                <div className={`w-lg-75 w-100 d-flex flex-column mx-auto bg-white ${styles.chatCon} p-3 p-lg-5`}>
+                    <h5 className="text-primary mb-3">Chat</h5>
                     <div className="w-100 d-flex justify-content-between">
                         <h4 className="fw-bold">Chat</h4>
                         <h4 className="fw-bold text-primary">Filter</h4>
@@ -66,7 +66,7 @@ const Chat = () => {
                                     onClick={()=>navigate(`/main/chat/${user.idusers}`)}>
                                     <div className="user w-100 py-lg-3 d-flex">
                                         {/* user profPic */}
-                                        <img src={user.photo? user.photo : Kucing} className={`${styles.pic} me-lg-3`} alt="" />
+                                        <img src={user.photo? user.photo : Kucing} className={`${styles.pic} me-3`} alt="" />
                                         <div className="chat d-flex flex-column flex-fill justify-content-between">
                                             {/* user name */}
                                             <h4 className="fw-bold">{user.username}</h4>

@@ -8,9 +8,10 @@ import Luggage from '../../../assets/luggage.svg'
 import Wifi from '../../../assets/wifi.svg'
 import Input from '../../../components/module/Input'
 import ReactPaginate from 'react-paginate'
-import { useSearchParams } from 'react-router-dom'
+import { useNavigate, useSearchParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 import { getFlights } from '../../../redux/actions/flights';
+import { PostFlight } from '../../../redux/actions/postFlightDetail'
 
 const FindTicket = () => {
 
@@ -39,8 +40,12 @@ const FindTicket = () => {
         class: '',
         transit: '',
         arrival_type: '',
-        depature_type: ''
+        depature_type: '',
+        date: null
     })
+
+    const formFlight = []
+    const navigate = useNavigate()
 
     const dispatch = useDispatch()
     const tickets = useSelector((state) => state.Flights)
@@ -48,8 +53,24 @@ const FindTicket = () => {
     //get all tickets
     useEffect(() => {
         dispatch(getFlights(form))
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [params])
+
+
+    //select flight
+
+    const handleSelectFlight = (id) => {
+        tickets.data.map((ticket) => {
+            if (ticket.id === id){
+                formFlight.push({ ...ticket, 
+                    date: form.date, 
+                    classname: ticket.class, 
+                    departure_time: ticket.depature_time,
+                departure_type: ticket.depature_type })
+                dispatch(PostFlight({formFlight, navigate}))
+            }
+        })
+    }
 
     //pagination config
     const displayTickets = tickets.data.slice(pagesVisited, pagesVisited + dataPerPage).map((ticket, index) => {
@@ -58,7 +79,12 @@ const FindTicket = () => {
                 key={index}>
                 <div className="wrapper w-100 h-100 p-lg-3 p-1 px-3 d-lg-block d-flex flex-column">
                     <div className="w-50 d-flex justify-content-between align-items-center">
-                        <img src={ticket.logo} className={`${styles.airlineLogo} d-lg-block d-none`} alt="" />
+                        {(ticket.airline === 'Airasia' && <img className={`${styles.airlineLogo} d-lg-block d-none`} 
+                        src="https://th.bing.com/th/id/R.1f96c8c723dcc01c11b102f4dc386867?rik=G0OuoXUyabTjMA&riu=http%3a%2f%2flofrev.net%2fwp-content%2fphotos%2f2017%2f04%2fair_asia_logo_free.jpg&ehk=zgaIIjf3IJChiEHc0YKG9cK%2bc%2bnh21%2bkvfV2riVXcCw%3d&risl=&pid=ImgRaw&r=0" alt='' />) || 
+                        (ticket.airline === 'LionAir' && <img className={`${styles.airlineLogo} d-lg-block d-none`} 
+                        src="https://th.bing.com/th/id/R.fdce7f1ff0542c5b02381fe01d2168bf?rik=jKbM7zx19MHxIA&riu=http%3a%2f%2flogos-download.com%2fwp-content%2fuploads%2f2016%2f05%2fLion_Air_logo.png&ehk=yo%2bq6Ct8YaWtmU1ju4kw2yRfLt4FoKe4KdYMDkvB3tw%3d&risl=&pid=ImgRaw&r=0" alt='' />) || 
+                        (ticket.airline === 'Garuda Indonesia' && <img className={`${styles.airlineLogo} d-lg-block d-none`} 
+                        src="https://3.bp.blogspot.com/-kfqmZ6swf14/UPkoWbasV_I/AAAAAAAAFLQ/7DrmTWFM6sQ/s1600/Logo+Garuda+Indonesia.jpg" alt='' />)}
                         <p className={`w-75 ${styles.airlines} text-secondary`}>{ticket.airlines}</p>
                     </div>
                     <div className="pt-lg-5 d-flex justify-content-between align-items-center w-100">
@@ -91,16 +117,19 @@ const FindTicket = () => {
                                 </span>
                             </p>
                         </div>
-                        <div className={`bg-primary text-white d-lg-block d-none ${styles.button}`}>Select</div>
+                        <div
+                            className={`bg-primary text-white d-lg-block d-none ${styles.button}`}
+                            onClick={() => handleSelectFlight(ticket.id)}
+                        >Select</div>
 
                     </div>
                     <div className="d-lg-none d-flex justify-content-between align-items-center w-100 pb-3">
-                    <h5 className="text-secondary fw-bold">{ticket.airline}</h5>
-                    <p className={`text-primary ${styles.airlines}`}>${ticket.price}.00
-                                <span className="text-secondary ms-1">
-                                    /pax
-                                </span>
-                            </p>
+                        <h5 className="text-secondary fw-bold">{ticket.airline}</h5>
+                        <p className={`text-primary ${styles.airlines}`}>${ticket.price}.00
+                            <span className="text-secondary ms-1">
+                                /pax
+                            </span>
+                        </p>
                     </div>
                 </div>
             </div>
@@ -122,9 +151,6 @@ const FindTicket = () => {
 
     //transit
     // eslint-disable-next-line no-unused-vars
-    const handleRadioTransit = (e) => {
-        console.log(e.target.value);
-    }
     const handleDropdownTransit = () => setShowRadio1(!showRadio1)
 
     //facilities
@@ -193,6 +219,8 @@ const FindTicket = () => {
                                 <Input
                                     className={`text-white mt-0 mb-3 ${styles.input1}`}
                                     type="date"
+                                    name="date"
+                                    onChange={handleChange}
                                 />
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-dot text-white" viewBox="0 0 16 16">
                                     <path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z" />
