@@ -13,14 +13,16 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { getFlightDetail } from '../../../redux/actions/flight-detail'
 import { decodeToken } from 'react-jwt'
+import {PostBooking} from '../../../redux/actions/postbookinglist';
 
 const FlightDetail = () => {
     const { id } = useParams()
     const dispatch = useDispatch()
-    const qty = localStorage.getItem('qty')
-    // console.log('qty',qty);
+    const qty = JSON.parse(localStorage.getItem('qty'))
+
     const dataFlightDetail = useSelector((state => state.FlightDetail))
-    const [resData] = dataFlightDetail.data
+    const [resData] = dataFlightDetail?.data
+
     // console.log(resData,'awwwwwwwwwwwwwwwwwwwwwwww');
     const tokenUser = localStorage.getItem('token');
     const userInfo = decodeToken(tokenUser)
@@ -30,9 +32,9 @@ const FlightDetail = () => {
 
     const passenger = useSelector((state) => state.PostBookingList)
     const [formPassenger, setFormPassenger] = useState({
-        id: resData?.id,
-        idusers: tokenUser?.id,
-        list_passenger: "",
+        id: id,
+        idusers: userInfo?.id,
+        list_passenger: qty,
         departure: resData?.departure,
         arrival: resData?.arrival,
         date: "Sunday, 15 August 2020",
@@ -43,9 +45,15 @@ const FlightDetail = () => {
         price: resData?.price * qty
     })
 
+    const formSubmit = []
+
+    const [formPassengerexp, setFormPassengerexp] = useState(Array(qty).fill({
+        name:''
+    }))
+
     const validatePassenger = (value) => {
         const error = {};
-        if(!value.fullname) {
+        if (!value.fullname) {
             error.fullname = "Fullname Required"
         }
     }
@@ -60,20 +68,22 @@ const FlightDetail = () => {
 
     const handleClick = () => {
         navigate('/main/booking-detail')
+        
     }
-    
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        const resultValidate = validatePassenger(formPassenger);
-        setFormPassenger(resultValidate);
-        handleClick(resultValidate);
+        // const resultValidate = validatePassenger(formPassenger);
+        // setFormPassenger(resultValidate);
+        // handleClick(resultValidate);
+        formSubmit.push({...resData, idusers: id, list_passenger: qty, price: resData?.price * qty})
+        dispatch((PostBooking(formSubmit[0], navigate)))
     }
 
     useEffect(() => {
         dispatch(getFlightDetail(id))
     }, [])
-
-
+    
     return (
         <div className=''>
             <div className={`${styles.bg}`}>
@@ -152,41 +162,45 @@ const FlightDetail = () => {
                     <div className={`mid-content pt-5 `}>
                         {/* <PassengerDetail /> */}
                         <h4>Passenger Details</h4>
-                        <div className={`${styles.border15} ${styles.w55} p-3`}>
-                            <div className={`${styles.border15} bg-primary bg-opacity-25 d-flex justify-content-between px-2`}>
-                                <div className={`align-self-center`}>Passenger : {qty} Adult</div>
-                                <div className="switcher-box d-flex py-2">
-                                    Same as contact person
-                                    <div className="form-check form-switch ps-5">
-                                        <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" />
+                        {formPassengerexp.map((item, index) => {
+                            return (
+                            <div className={`${styles.border15} ${styles.w55} p-3 mb-5`} key={index}>
+                                <div className={`${styles.border15} bg-primary bg-opacity-25 d-flex justify-content-between px-2`}>
+                                    <div className={`align-self-center`}>Passenger : {qty} Adult</div>
+                                    <div className="switcher-box d-flex py-2">
+                                        Same as contact person
+                                        <div className="form-check form-switch ps-5">
+                                            <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div className="person-title mt-3"><p>Title</p>
+                                    <h6 className={`${styles.uline} pb-2`}>Mr. / Mrs </h6>
+                                </div>
+                                <div className="person-name py-3"><p>Full Name</p>
+                                    <Input
+                                        name="fullname"
+                                        type="text"
+                                        className='w-100 border-0 border-bottom px-3'
+                                    />
+                                </div>
+                                <div className="nationality"><p>Nationality</p>
+                                    <div className="dropdown">
+                                        <button className="btn dropdown-toggle fw-bold" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                            Indonesia
+                                        </button>
+                                        <ul className='dropdown-menu'>
+                                            <li><p className='dropdown-item'>Malaysia</p></li>
+                                            <li><p className='dropdown-item'>Singapore</p></li>
+                                        </ul>
                                     </div>
                                 </div>
                             </div>
-                            <div className="person-title mt-3"><p>Title</p>
-                                <h6 className={`${styles.uline} pb-2`}>Mr. / Mrs </h6>
-                            </div>
-                            <div className="person-name py-3"><p>Full Name</p>
-                                <Input
-                                value={formPassenger.fullname}
-                                name="fullname"
-                                type="text"
-                                className='w-100 border-0 border-bottom px-3'
-                                onChange={handleChange}
-                                />
-                            </div>
-                            <div className="nationality"><p>Nationality</p>
-                                <div className="dropdown">
-                                    <button className="btn dropdown-toggle fw-bold" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                        Indonesia
-                                    </button>
-                                    <ul className='dropdown-menu'>
-                                        <li><p className='dropdown-item'>Malaysia</p></li>
-                                        <li><p className='dropdown-item'>Singapore</p></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
+                            )
+                        })}
                     </div>
+
+
                     <div className={`py-5`}>
                         <h4>Passenger Details</h4>
                         <div className={`${styles.border15} ${styles.w55} mt-4 py-3`}>
@@ -207,8 +221,8 @@ const FlightDetail = () => {
                 </div>
                 <div className={`${styles.w55} d-flex justify-content-center`}>
                     <Button
-                    onClick={handleSubmit}
-                    className='btn btn-primary mb-5'
+                        onClick={handleSubmit}
+                        className='btn btn-primary mb-5'
                     >
                         <h5>Proceed to Payment</h5>
                     </Button>

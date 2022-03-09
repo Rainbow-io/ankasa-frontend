@@ -19,18 +19,15 @@ export const PostBookingError = (error) => {
     }
 }
 
-export const PostBooking = (formPassenger, setLoading, navigate) => {
+export const PostBooking = (formPassenger, navigate) => {
     return (dispatch) => {
         dispatch(PostBookingRequest())
         return axios({
             method: 'POST',
             url: `https://ankasa-rainbow.herokuapp.com/booking/list`,
-            data: {
-                fullname: formPassenger.fullname,
-            }
+            data: formPassenger
         })
             .then((res) => {
-                setLoading(false)
                 const resultPostBooking = res.data?.message
                 dispatch(PostBookingResponse(resultPostBooking))
                 alert(resultPostBooking)
@@ -38,7 +35,6 @@ export const PostBooking = (formPassenger, setLoading, navigate) => {
                 console.log('BOOOOOOOOOOOOOOK',resultPostBooking);
             })
             .catch((err) => {
-                setLoading(false)
                 if (err.response !== undefined) {
                     const message = err.response.data?.message
                     dispatch(PostBookingError(message))
