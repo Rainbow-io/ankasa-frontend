@@ -82,9 +82,9 @@ const ChatRoom = () => {
     return (
         <main className={`d-flex flex-column ${styles.con}`}>
             <main className={`container-fluid g-0 bg-light p-lg-5 flex-fill`}>
-                <div className={`w-75 d-flex flex-column mx-auto bg-white ${styles.chatCon}`}>
-                    <div className={`h-25 w-100 d-flex align-items-center p-lg-5 ${styles.receiverHeader}`}>
-                        <img src={receiver.data.photo ? receiver.data.photo : Kucing} className={`${styles.pic}`} alt="" />
+                <div className={`w-lg-75 w-100 d-flex flex-column mx-auto bg-white ${styles.chatCon}`}>
+                    <div className={`h-lg-25 w-100 d-flex align-items-center p-lg-5 p-3 py-5 py-lg-0 ${styles.receiverHeader}`}>
+                        <img src={receiver.data.photo ? receiver.data.photo : Kucing} className={`${styles.pic} me-3 me-lg-0`} alt="" />
                         <h4 className="text-secondary ms-lg-3">{receiver.data.username ? receiver.data.username : `Namanya ga ada`}</h4>
                     </div>
                     <div className={`mt-lg-3 w-100 px-lg-5 ${styles.conzz}`}>
@@ -108,7 +108,7 @@ const ChatRoom = () => {
                         )}
                         <div className="w-50"></div>
                     </div>
-                    <div className="wrapper-input w-100 mt-3 px-lg-5">
+                    <div className="wrapper-input w-100 mt-3 px-lg-5 p-3">
                         <Input
                             type='text'
                             name='message'

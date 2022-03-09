@@ -26,3 +26,10 @@
 .pointer{
     cursor: pointer;
 }
+
+@media screen and (min-width: 240px) and (max-width: 768px){
+    .chatCon{
+        border-radius: 0;
+        margin-top: 0;
+    }
+}

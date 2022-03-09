@@ -62,7 +62,11 @@ const FindTicket = () => {
     const handleSelectFlight = (id) => {
         tickets.data.map((ticket) => {
             if (ticket.id === id){
-                formFlight.push({ ...ticket, departure_date: form.date })
+                formFlight.push({ ...ticket, 
+                    date: form.date, 
+                    classname: ticket.class, 
+                    departure_time: ticket.depature_time,
+                departure_type: ticket.depature_type })
                 dispatch(PostFlight({formFlight, navigate}))
             }
         })
