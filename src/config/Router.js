@@ -46,6 +46,9 @@ const Router = () => {
           <Route path="chat" element={<Chat/>} />
           <Route path="chat/:id" element={<ChatRoom/>} />
           <Route path="notification" element={<Notification />} />
+          <Route path="flight-detail/:id" element={<FlightDetail/>} />
+          <Route path="chat" element={<Chat/>} />
+          <Route path="chat/:id" element={<ChatRoom/>} />
           <Route index element={<Navigate to="/main/explore" />} />
         </Route>
 

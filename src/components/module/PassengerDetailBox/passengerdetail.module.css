@@ -1,0 +1,11 @@
+.border15{
+    border-radius: 15px;
+    background-color: white;
+}
+.uline{
+    border-bottom: 2px solid rgba(210, 194, 255, 0.68)!important;
+    width: 100%!important;
+}
+.w55{
+    width: 55%;
+}

@@ -43,6 +43,7 @@ const FindTicket = () => {
         depature_type: '',
         date: null
     })
+    
 
     const formFlight = []
     const navigate = useNavigate()
