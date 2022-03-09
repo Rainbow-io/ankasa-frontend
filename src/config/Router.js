@@ -10,16 +10,18 @@ import Auth from '../pages/Auth/';
 import Login from '../pages/Auth/Login';
 import SignUp from '../pages/Auth/SignUp';
 import ForgotPassword from '../pages/Auth/ForgotPassword';
-import FindTicket from '../pages/Main/FindTicket';
+
 import Main from '../pages/Main';
 import Explore from '../pages/Main/Explore';
-import Profile from '../pages/Main/Profile';
+import FindTicket from '../pages/Main/FindTicket';
+import FlightDetail from '../pages/Main/FlightDetail';
 import MyBooking from '../pages/Main/MyBooking';
 import BookingDetail from '../pages/Main/BookingDetail';
-import Notification from '../pages/Main/Notification';
+import Payment from '../pages/Main/Payment';
+import Profile from '../pages/Main/Profile';
 import Chat from '../pages/Main/Chat';
 import ChatRoom from '../pages/Main/Chat/ChatRoom';
-import FlightDetailBodong from '../pages/Main/flight-detail-abal';
+import Notification from '../pages/Main/Notification';
 
 const Router = () => {
   return (
@@ -35,14 +37,15 @@ const Router = () => {
 
         <Route path="/main" element={<Main />}>
           <Route path="explore" element={<Explore />} />
-          <Route path="my-booking" element={<MyBooking />} />
-          <Route path="profile" element={<Profile />} />
-          <Route path="booking-detail" element={<BookingDetail />} />
-          <Route path="notification" element={<Notification />} />
           <Route path="find-ticket" element={<FindTicket/>} />
+          <Route path="flight-detail" element={<FlightDetail/>} />
+          <Route path="my-booking" element={<MyBooking />} />
+          <Route path="booking-detail" element={<BookingDetail />} />
+          <Route path="payment" element={<Payment />} />
+          <Route path="profile" element={<Profile />} />
           <Route path="chat" element={<Chat/>} />
           <Route path="chat/:id" element={<ChatRoom/>} />
-          <Route path="flight-detail/:id" element={<FlightDetailBodong/>} />
+          <Route path="notification" element={<Notification />} />
           <Route index element={<Navigate to="/main/explore" />} />
         </Route>
 
