@@ -40,8 +40,8 @@ const Router = () => {
           <Route path="find-ticket" element={<FindTicket/>} />
           <Route path="flight-detail" element={<FlightDetail/>} />
           <Route path="my-booking" element={<MyBooking />} />
-          <Route path="booking-detail" element={<BookingDetail />} />
-          <Route path="payment" element={<Payment />} />
+          <Route path="booking-detail/:id" element={<BookingDetail />} />
+          <Route path="payment/:id" element={<Payment />} />
           <Route path="profile" element={<Profile />} />
           <Route path="chat" element={<Chat/>} />
           <Route path="chat/:id" element={<ChatRoom/>} />
