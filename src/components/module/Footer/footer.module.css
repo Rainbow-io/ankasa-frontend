@@ -1,0 +1,8 @@
+.footer {
+    position:relative;
+    bottom:0;
+ }
+
+ .userPointer {
+     cursor: pointer;
+ }

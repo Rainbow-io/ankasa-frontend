@@ -1,0 +1,50 @@
+.con{
+    height: 80vh;
+}
+
+.chatCon{
+    height: 85%;
+    border-radius: 2rem;
+    margin-top: .1%;
+}
+
+.conzz{
+    height: 70%;
+    overflow-y: auto;
+}
+
+.pic{
+    height: 4rem;
+    width: 4rem;
+    border-radius: 1rem;
+}
+
+.receiverHeader{
+    box-shadow: 0px 20px 40px rgba(78, 69, 69, 0.05);
+    background-color: gainsboro;
+    border-radius: 1rem;
+    height: 15rem;
+}
+
+.radius{
+    border-radius: 1rem;
+}
+@media screen and (min-width: 240px) and (max-width: 768px){
+    .chatCon{
+        height: 100%;
+        border-radius: 0;
+        margin-top: 0;
+    }
+
+    .con{
+        height: 100vh;
+    }
+
+    .receiverHeader{
+        border-radius: 0;
+        border-bottom-left-radius: 2rem;
+        border-bottom-right-radius: 2rem;
+        height: 10rem;
+    }
+    
+}

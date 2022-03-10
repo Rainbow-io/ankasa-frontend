@@ -1,70 +1,134 @@
-# Getting Started with Create React App
+[![Netlify Status](https://api.netlify.com/api/v1/badges/29e58c63-9c4b-45a9-af9e-e827896feb5d/deploy-status)](https://app.netlify.com/sites/ankasa-rainbow/deploys)
+## Getting Started
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+  
 
-## Available Scripts
+### Prerequisites
 
-In the project directory, you can run:
+ Make sure that Node JS is installed on the computer.
 
-### `npm start`
+* [Node Js](https://nodejs.org/en/download/)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+  
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Installation
 
-### `npm test`
+  
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. Clone this repos (ankasa-frontend)
 
-### `npm run build`
+```sh
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+git clone https://github.com/Rainbow-io/ankasa-frontend.git
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+2. Go To Folder Repo
 
-### `npm run eject`
+```sh
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+cd ankasa-frontend
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+3. Install Module
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+```sh
 
-## Learn More
+npm install
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+4. Add .env file at root folder project, and add following
 
-### Code Splitting
+```sh
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+REACT_APP_URL_BACKEND = https://ankasa-rainbow.herokuapp.com/app
 
-### Analyzing the Bundle Size
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+5. Start website
 
-### Making a Progressive Web App
+```sh
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+npm start
 
-### Advanced Configuration
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+  
 
-### Deployment
+### Related Project
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+* [`ankasa-frontend`](https://github.com/Rainbow-io/ankasa-frontend)
 
-### `npm run build` fails to minify
+* [`ankasa-backend`](https://github.com/Rainbow-io/ankasa-backend)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+  
+# Features Application
+- [x] Login & Register user.
+- [x] Explore for finding tickets.
+- [x] Flight Detail.
+- [x] My Booking for your last history tickets.
+- [x] Booking detail.
+- [x] Profile
+- [x] Chat
+- [x] Notification.
+## Screenshots
+
+  
+
+<div  align="center">
+
+<img  width="350"  src="https://raw.githubusercontent.com/Rainbow-io/ankasa-frontend/dev/src/assets/ss/ankasa-loginpage.png">
+
+<img  width="350"  src="https://raw.githubusercontent.com/Rainbow-io/ankasa-frontend/dev/src/assets/ss/ankasa-explore.png">
+
+</div>
+
+<div  align="center">
+
+<img  width="350"  src="https://raw.githubusercontent.com/Rainbow-io/ankasa-frontend/dev/src/assets/ss/ankasa-findticket.png">
+
+<img  width="350"  src="https://raw.githubusercontent.com/Rainbow-io/ankasa-frontend/dev/src/assets/ss/ankasa-mybooking.png">
+
+</div>
+
+<div  align="center">
+
+<img  width="350"  src="https://raw.githubusercontent.com/Rainbow-io/ankasa-frontend/dev/src/assets/ss/ankasa-bookingdetail.png">
+
+<img  width="350"  src="https://raw.githubusercontent.com/Rainbow-io/ankasa-frontend/dev/src/assets/ss/ankasa-profile.png">
+
+</div>
+
+<div  align="center">
+
+<img  width="350"  src="https://raw.githubusercontent.com/Rainbow-io/ankasa-frontend/dev/src/assets/ss/ankasa-chat.png">
+
+</div>
+
+<div  align="center">
+
+<img  width="350"  src="https://raw.githubusercontent.com/Rainbow-io/ankasa-frontend/dev/src/assets/ss/ankasa-notification.png">
+
+</div>
+
+  
+
+
+# Our Team - Rainbow.io
+ | profile | Nama | Status | Github | Linkedin |
+ | ------- | ---- | ------ | ------ | -------- |
+ | ![profile vigar][img-vigar] | Vigar Rivai Putra | Fullstack | [vigarp](https://github.com/vigarp)|[vigarp](https://www.linkedin.com/in/vigarp/) 
+ | ![profile adinda][img-adinda] | Adinda Cahya Ferina | Fullstack | [dindachyfr](https://github.com/dindachyfr)|[adindacahyaferina](https://www.linkedin.com/in/adindacahyaferina) 
+ | ![profile tyas][img-tyas] | Adityas Susanto | Frontend | [tyassusanto](https://github.com/tyassusanto)|[tyassusanto](https://linkedin.com/in/tyassusanto/) 
+ | ![profile rifai][img-rifai] | Muhamad Rifai | Backend | [MuhDRifai](https://github.com/MuhDRifai)|[muhamadrifai23](https://www.linkedin.com/in/muhamadrifai23/)
+  | ![profile ridho][img-ridho] | Ridho Suhendar | Backend | [Rayxzzz](https://github.com/wahyuKurniawaan)|[ridhosuhendar](https://www.linkedin.com/in/ridhosuhendar)
+
+[img-vigar]: https://avatars.githubusercontent.com/u/65258427?v=4
+[img-adinda]:https://avatars.githubusercontent.com/u/92015867?v=4
+[img-tyas]: https://avatars.githubusercontent.com/u/92015831?v=4
+[img-rifai]: https://avatars.githubusercontent.com/u/97932199?v=4
+[img-ridho]: https://avatars.githubusercontent.com/u/91738561?v=4
+
+

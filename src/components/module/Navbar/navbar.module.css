@@ -1,0 +1,49 @@
+.navbar{
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1rem
+}
+
+.logo{
+    display: flex;
+    width: 10vw;
+}
+
+.titleNavbar{
+    font-weight: 600;
+}
+
+.navbarSearch{
+    padding: .5rem 1rem;
+    background-color: #F5F5F5;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.searchIcon {
+    color: gray;
+    margin-right: .25rem;
+}
+.searchInput{
+    outline: transparent;
+    border: none;
+    background-color: transparent;
+}
+
+.rightHeader{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 10vw;
+}
+
+.profilePic{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.pointer{
+    cursor: pointer;
+}
