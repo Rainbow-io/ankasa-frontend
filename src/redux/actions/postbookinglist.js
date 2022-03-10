@@ -30,7 +30,7 @@ export const PostBooking = (formPassenger, navigate) => {
             .then((res) => {
                 const resultPostBooking = res.data?.message
                 dispatch(PostBookingResponse(resultPostBooking))
-                alert(resultPostBooking)
+                alert("Success Add to Payment")
                 navigate("/main/my-booking")
                 console.log('BOOOOOOOOOOOOOOK',resultPostBooking);
             })
