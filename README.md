@@ -79,39 +79,37 @@ npm start
 
 <div  align="center">
 
-<img  width="350"  src="https://raw.githubusercontent.com/Rainbow-io/ankasa-frontend/Profile/src/assets/ss/ankasa-loginpage.png">
+<img  width="350"  src="https://raw.githubusercontent.com/Rainbow-io/ankasa-frontend/dev/src/assets/ss/ankasa-loginpage.png">
 
-<img  width="350"  src="https://raw.githubusercontent.com/Rainbow-io/ankasa-frontend/Profile/src/assets/ss/ankasa-explore.png">
-
-</div>
-
-<div  align="center">
-
-<img  width="350"  src="https://raw.githubusercontent.com/Rainbow-io/ankasa-frontend/Profile/src/assets/ss/ankasa-findticket.png">
-
-<img  width="350"  src="https://raw.githubusercontent.com/Rainbow-io/ankasa-frontend/Profile/src/assets/ss/ankasa-mybooking.png">
+<img  width="350"  src="https://raw.githubusercontent.com/Rainbow-io/ankasa-frontend/dev/src/assets/ss/ankasa-explore.png">
 
 </div>
 
 <div  align="center">
 
-<img  width="350"  src="https://raw.githubusercontent.com/Rainbow-io/ankasa-frontend/Profile/src/assets/ss/ankasa-bookingdetail.png">
+<img  width="350"  src="https://raw.githubusercontent.com/Rainbow-io/ankasa-frontend/dev/src/assets/ss/ankasa-findticket.png">
 
-<img  width="350"  src="https://raw.githubusercontent.com/Rainbow-io/ankasa-frontend/Profile/src/assets/ss/ankasa-profile.png">
-
-</div>
-
-<div  align="center">
-
-<img  width="350"  src="https://raw.githubusercontent.com/Rainbow-io/ankasa-frontend/Profile/src/assets/ss/ankasa-chat.png">
-
-<img  width="350"  src="https://res.cloudinary.com/dnv-images/image/upload/v1631723284/Zwallet/Zwallet-08_kjsjia.png">
+<img  width="350"  src="https://raw.githubusercontent.com/Rainbow-io/ankasa-frontend/dev/src/assets/ss/ankasa-mybooking.png">
 
 </div>
 
 <div  align="center">
 
-<img  width="350"  src="https://raw.githubusercontent.com/Rainbow-io/ankasa-frontend/Profile/src/assets/ss/ankasa-notification.png">
+<img  width="350"  src="https://raw.githubusercontent.com/Rainbow-io/ankasa-frontend/dev/src/assets/ss/ankasa-bookingdetail.png">
+
+<img  width="350"  src="https://raw.githubusercontent.com/Rainbow-io/ankasa-frontend/dev/src/assets/ss/ankasa-profile.png">
+
+</div>
+
+<div  align="center">
+
+<img  width="350"  src="https://raw.githubusercontent.com/Rainbow-io/ankasa-frontend/dev/src/assets/ss/ankasa-chat.png">
+
+</div>
+
+<div  align="center">
+
+<img  width="350"  src="https://raw.githubusercontent.com/Rainbow-io/ankasa-frontend/dev/src/assets/ss/ankasa-notification.png">
 
 </div>
 
@@ -121,13 +119,12 @@ npm start
 # Our Team - Rainbow.io
  | profile | Nama | Status | Github | Linkedin |
  | ------- | ---- | ------ | ------ | -------- |
- | ![profile budi][img-vigar] | Vigar Rivai Putra | Fullstack | [vigarp](https://github.com/Budi77Darmawan)|[vigarp](https://www.linkedin.com/in/vigarp/) 
- | ![profile ardion][img-adinda] | Adinda Cahya Ferina | Fullstack | [dindachyfr](https://github.com/dindachyfr)|[adindacahyaferina](https://www.linkedin.com/in/adindacahyaferina) 
- | ![profile iksan][img-tyas] | Adityas Susanto | Frontend | [tyassusanto](https://github.com/tyassusanto)|[tyassusanto](https://linkedin.com/in/tyassusanto/) 
- | ![profile wahyu][img-rifai] | Muhamad Rifai | Backend | [MuhDRifai](https://github.com/MuhDRifai)|[muhamadrifai23](https://www.linkedin.com/in/muhamadrifai23/)
-  | ![profile wahyu][img-ridho] | Ridho Suhendar | Backend | [Rayxzzz](https://github.com/wahyuKurniawaan)|[ridhosuhendar](https://www.linkedin.com/in/ridhosuhendar)
+ | ![profile vigar][img-vigar] | Vigar Rivai Putra | Fullstack | [vigarp](https://github.com/vigarp)|[vigarp](https://www.linkedin.com/in/vigarp/) 
+ | ![profile adinda][img-adinda] | Adinda Cahya Ferina | Fullstack | [dindachyfr](https://github.com/dindachyfr)|[adindacahyaferina](https://www.linkedin.com/in/adindacahyaferina) 
+ | ![profile tyas][img-tyas] | Adityas Susanto | Frontend | [tyassusanto](https://github.com/tyassusanto)|[tyassusanto](https://linkedin.com/in/tyassusanto/) 
+ | ![profile rifai][img-rifai] | Muhamad Rifai | Backend | [MuhDRifai](https://github.com/MuhDRifai)|[muhamadrifai23](https://www.linkedin.com/in/muhamadrifai23/)
+  | ![profile ridho][img-ridho] | Ridho Suhendar | Backend | [Rayxzzz](https://github.com/wahyuKurniawaan)|[ridhosuhendar](https://www.linkedin.com/in/ridhosuhendar)
 
-[link-ERD]: https://drive.google.com/file/d/1OZ7auMOGpQAM6npz1CZKrqjG8YMGIWsL/view?usp=sharing
 [img-vigar]: https://avatars.githubusercontent.com/u/65258427?v=4
 [img-adinda]:https://avatars.githubusercontent.com/u/92015867?v=4
 [img-tyas]: https://avatars.githubusercontent.com/u/92015831?v=4
