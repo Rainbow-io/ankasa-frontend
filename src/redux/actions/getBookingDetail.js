@@ -28,7 +28,7 @@ export const GetBookingDetail = () => {
         dispatch(GetBookingDetailRequest())
         return axios({
             method: 'GET',
-            url: `https://ankasa-rainbow.herokuapp.com/booking/list/22`,
+            url: `https://ankasa-rainbow.herokuapp.com/booking/list/${userInfo.id}`,
             headers: {Authorization: 'Bearer ' + tokenUser}
         })
         .then((res) => {
