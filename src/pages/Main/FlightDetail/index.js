@@ -76,7 +76,7 @@ const FlightDetail = () => {
         // const resultValidate = validatePassenger(formPassenger);
         // setFormPassenger(resultValidate);
         // handleClick(resultValidate);
-        formSubmit.push({...resData, idusers: id, list_passenger: qty, price: resData?.price * qty})
+        formSubmit.push({...resData, idusers: userInfo.id, list_passenger: qty, price: resData?.price * qty})
         dispatch((PostBooking(formSubmit[0], navigate)))
     }
 
