@@ -8,14 +8,14 @@ import Flights from './flights';
 import Users from './users';
 import UserID from './userByID';
 import EditPicLink from './editPicLink';
-<<<<<<< HEAD
 import EditBiodata from './editBiodata';
 import GetBookingDetail from './getBookingDetail';
-=======
 import PostFlight from './postFlightDetail'
 import FlightDetail from './flight-detail'
 import PostBookingList from './postbookinglist'
->>>>>>> flight-detail
+import BookingSuccess from './bookingSuccess';
+import BookingPayment from './bookingPayment';
+import PostPay from './postPay';
 
 const rootReducers = combineReducers({
   login,
@@ -24,14 +24,14 @@ const rootReducers = combineReducers({
   Users,
   UserID,
   EditPicLink,
-<<<<<<< HEAD
   EditBiodata,
-  GetBookingDetail
-=======
+  GetBookingDetail,
   PostFlight,
   FlightDetail,
-  PostBookingList
->>>>>>> flight-detail
+  PostBookingList,
+  BookingSuccess,
+  BookingPayment,
+  PostPay
 })
 
 export default rootReducers
