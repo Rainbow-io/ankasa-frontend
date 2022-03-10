@@ -16,7 +16,7 @@ const UserContext = ({ children }) => {
   const userDetailData = useSelector((state) => state.UserID);
 
   useEffect(() => {
-    dispatch((getUserID(userInfo.id)))
+    dispatch((getUserID(userInfo?.id)))
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
