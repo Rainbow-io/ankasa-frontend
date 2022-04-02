@@ -24,7 +24,7 @@ export const PostPayError = (error) => {
     }
 }
 
-export const PostPay = (payData, setLoading, navigate, idBooking) => {
+export const PostPay = (payData, setLoading, navigate, idBooking, tokenUser) => {
     return (dispatch) => {
         dispatch(PostPayRequest())
         return axios({
@@ -32,7 +32,8 @@ export const PostPay = (payData, setLoading, navigate, idBooking) => {
             url: `https://ankasa-rainbow.herokuapp.com/booking/list/pay/${idBooking}`,
             data: {
                 price: payData
-            }
+            },
+            headers : {Authorization :  `Bearer ${tokenUser}`}
         })
         .then((res) => {
             setLoading(false)
