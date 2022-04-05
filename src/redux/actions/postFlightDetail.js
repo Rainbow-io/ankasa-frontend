@@ -19,26 +19,27 @@ export const PostFlightError = (error) => {
     }
 }
 
-export const PostFlight = ({formFlight, navigate}) => {
+export const PostFlight = ({ formFlight, navigate, token }) => {
     return (dispatch) => {
         dispatch(PostFlightRequest())
         return axios({
             method: 'POST',
             url: `https://ankasa-rainbow.herokuapp.com/booking/insert`,
-            data: formFlight[0]
+            data: formFlight[0],
+            headers : {Authorization :  `Bearer ${token}`}
         })
-        .then((res) => {
-            const resultPostSuccess = res.data?.message
-            dispatch(PostFlightResponse(resultPostSuccess))
-            navigate(`/main/flight-detail/${formFlight[0].id}`)
-        })
-        .catch((err) => {
-            if (err.response !== undefined) {
-                const message = err.response.data?.message
-                dispatch(PostFlightError(message))
-            } else {
-                dispatch(PostFlightError("Network Error"))
-            }
-        })
+            .then((res) => {
+                const resultPostSuccess = res.data?.message
+                dispatch(PostFlightResponse(resultPostSuccess))
+                navigate(`/main/flight-detail/${formFlight[0].id}`)
+            })
+            .catch((err) => {
+                if (err.response !== undefined) {
+                    const message = err.response.data?.message
+                    dispatch(PostFlightError(message))
+                } else {
+                    dispatch(PostFlightError("Network Error"))
+                }
+            })
     }
 }

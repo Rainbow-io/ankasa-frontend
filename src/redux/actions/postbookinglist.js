@@ -19,13 +19,14 @@ export const PostBookingError = (error) => {
     }
 }
 
-export const PostBooking = (formPassenger, navigate) => {
+export const PostBooking = (formPassenger, navigate, token) => {
     return (dispatch) => {
         dispatch(PostBookingRequest())
         return axios({
             method: 'POST',
             url: `https://ankasa-rainbow.herokuapp.com/booking/list`,
-            data: formPassenger
+            data: formPassenger,
+            headers : {Authorization :  `Bearer ${token}`}
         })
             .then((res) => {
                 const resultPostBooking = res.data?.message

@@ -33,6 +33,7 @@ const FindTicket = () => {
     const [pageNumber, setPageNumber] = useState(0)
     const dataPerPage = 4
     const pagesVisited = pageNumber * dataPerPage
+    const token = localStorage.getItem('token')
 
     const [form, setForm] = useState({
         departure: '',
@@ -43,7 +44,7 @@ const FindTicket = () => {
         depature_type: '',
         date: null
     })
-    
+    console.log(token);
 
     const formFlight = []
     const navigate = useNavigate()
@@ -68,7 +69,7 @@ const FindTicket = () => {
                     classname: ticket.class, 
                     departure_time: ticket.depature_time,
                 departure_type: ticket.depature_type })
-                dispatch(PostFlight({formFlight, navigate}))
+                dispatch(PostFlight({formFlight, navigate, token}))
             }
         })
     }

@@ -13,23 +13,18 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { getFlightDetail } from '../../../redux/actions/flight-detail'
 import { decodeToken } from 'react-jwt'
-import {PostBooking} from '../../../redux/actions/postbookinglist';
+import { PostBooking } from '../../../redux/actions/postbookinglist';
 
 const FlightDetail = () => {
     const { id } = useParams()
     const dispatch = useDispatch()
     const qty = JSON.parse(localStorage.getItem('qty'))
-
+    const token = localStorage.getItem('token')
     const dataFlightDetail = useSelector((state => state.FlightDetail))
     const [resData] = dataFlightDetail?.data
-
-    // console.log(resData,'awwwwwwwwwwwwwwwwwwwwwwww');
     const tokenUser = localStorage.getItem('token');
     const userInfo = decodeToken(tokenUser)
-    // console.log(userInfo, 'infoooooooooooooooooooo');
-
     const navigate = useNavigate()
-
     const passenger = useSelector((state) => state.PostBookingList)
     const [formPassenger, setFormPassenger] = useState({
         id: id,
@@ -44,12 +39,7 @@ const FlightDetail = () => {
         logo: "https://3.bp.blogspot.com/-kfqmZ6swf14/UPkoWbasV_I/AAAAAAAAFLQ/7DrmTWFM6sQ/s1600/Logo+Garuda+Indonesia.jpg",
         price: resData?.price * qty
     })
-
     const formSubmit = []
-
-    const [formPassengerexp, setFormPassengerexp] = useState(Array(qty).fill({
-        name:''
-    }))
 
     const validatePassenger = (value) => {
         const error = {};
@@ -65,10 +55,9 @@ const FlightDetail = () => {
         })
     }
 
-
     const handleClick = () => {
         navigate('/main/booking-detail')
-        
+
     }
 
     const handleSubmit = (e) => {
@@ -76,14 +65,28 @@ const FlightDetail = () => {
         // const resultValidate = validatePassenger(formPassenger);
         // setFormPassenger(resultValidate);
         // handleClick(resultValidate);
-        formSubmit.push({...resData, idusers: userInfo.id, list_passenger: qty, price: resData?.price * qty})
-        dispatch((PostBooking(formSubmit[0], navigate)))
+        formSubmit.push({ ...resData, idusers: userInfo.id, list_passenger: qty, price: resData?.price * qty })
+        dispatch((PostBooking(formSubmit[0], navigate, token)))
     }
+    let formPassengerexp =[]
+
+        for (let i = 1; i <= qty; i++) {
+            formPassengerexp.push({ id: i, name: '' })
+        }
 
     useEffect(() => {
         dispatch(getFlightDetail(id))
     }, [])
-    
+
+    const [insurance, setInsurance] = useState(0)
+    const handleCheckbox = (e) => {
+        if (e.target.checked) {
+            setInsurance(e.target.value)
+        }else{
+            setInsurance(0)
+        }
+    }
+    console.log(insurance);
     return (
         <div className=''>
             <div className={`${styles.bg}`}>
@@ -155,7 +158,7 @@ const FlightDetail = () => {
                             </div>
                             <div className="total-payment d-flex justify-content-between mt-4">
                                 <h5>Total Payment</h5>
-                                <h4 className='text-primary'>$ {resData?.price * qty}</h4>
+                                <h4 className='text-primary'>$ {(resData?.price * qty) + (insurance*qty)}</h4>
                             </div>
                         </div>
                     </div>
@@ -164,38 +167,40 @@ const FlightDetail = () => {
                         <h4>Passenger Details</h4>
                         {formPassengerexp.map((item, index) => {
                             return (
-                            <div className={`${styles.border15} ${styles.w55} p-3 mb-5`} key={index}>
-                                <div className={`${styles.border15} bg-primary bg-opacity-25 d-flex justify-content-between px-2`}>
-                                    <div className={`align-self-center`}>Passenger : {qty} Adult</div>
-                                    <div className="switcher-box d-flex py-2">
-                                        Same as contact person
-                                        <div className="form-check form-switch ps-5">
-                                            <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" />
+                                <div className={`${styles.border15} ${styles.w55} p-3 mb-5`} key={index}>
+                                    <div className={`${styles.border15} bg-primary bg-opacity-25 d-flex justify-content-between px-2`}>
+                                        <div className={`align-self-center`}>Passenger : {qty} Adult</div>
+                                        <div className="switcher-box d-flex py-2">
+                                            Same as contact person
+                                            <div className="form-check form-switch ps-5">
+                                                <input className="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="person-title mt-3"><p>Title</p>
+                                        <h6 className={`${styles.uline} pb-2`}>Mr. / Mrs </h6>
+                                    </div>
+                                    <div className="person-name py-3"><p>Full Name</p>
+                                        <Input
+                                            name="fullname"
+                                            // id = {item.id}
+                                            type="text"
+                                            className='w-100 border-0 border-bottom px-3'
+                                        // onChange= {handleChange}
+                                        />
+                                    </div>
+                                    <div className="nationality"><p>Nationality</p>
+                                        <div className="dropdown">
+                                            <button className="btn dropdown-toggle fw-bold" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                                Indonesia
+                                            </button>
+                                            <ul className='dropdown-menu'>
+                                                <li><p className='dropdown-item'>Malaysia</p></li>
+                                                <li><p className='dropdown-item'>Singapore</p></li>
+                                            </ul>
                                         </div>
                                     </div>
                                 </div>
-                                <div className="person-title mt-3"><p>Title</p>
-                                    <h6 className={`${styles.uline} pb-2`}>Mr. / Mrs </h6>
-                                </div>
-                                <div className="person-name py-3"><p>Full Name</p>
-                                    <Input
-                                        name="fullname"
-                                        type="text"
-                                        className='w-100 border-0 border-bottom px-3'
-                                    />
-                                </div>
-                                <div className="nationality"><p>Nationality</p>
-                                    <div className="dropdown">
-                                        <button className="btn dropdown-toggle fw-bold" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                            Indonesia
-                                        </button>
-                                        <ul className='dropdown-menu'>
-                                            <li><p className='dropdown-item'>Malaysia</p></li>
-                                            <li><p className='dropdown-item'>Singapore</p></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
                             )
                         })}
                     </div>
@@ -207,7 +212,7 @@ const FlightDetail = () => {
                             <div className={`insurance-box`}>
                                 <div className={`${styles.uline} d-flex px-5 justify-content-between py-3 form-check`}>
                                     <div className="check d-flex">
-                                        <input className="form-check-input" type="checkbox" value="" id="flexCheckIndeterminate" />
+                                        <input className="form-check-input" type="checkbox" onChange={handleCheckbox} value="2" name="insurance" id="flexCheckIndeterminate" />
                                         <label className="form-check-label" for="flexCheckIndeterminate">
                                             <h6 className='ps-2'>Travel Insurance</h6>
                                         </label>

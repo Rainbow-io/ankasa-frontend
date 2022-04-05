@@ -1,5 +1,5 @@
 import axios from "axios";
-
+const token = localStorage.getItem('token')
 export const getFlightDetailRequest = () => {
     return {
         type: 'FLIGHTDETAIL_REQUEST'
@@ -22,7 +22,8 @@ export const getFlightDetail = (id) => (dispatch) => {
     dispatch(getFlightDetailRequest());
     return axios({
         method: 'GET',
-        url: `https://ankasa-rainbow.herokuapp.com/booking/detail/${id}`
+        url: `https://ankasa-rainbow.herokuapp.com/booking/detail/${id}`,
+        headers: {Authorization : `Bearer ${token}`}
     })
         .then((res) => {
             const data = res.data?.data;

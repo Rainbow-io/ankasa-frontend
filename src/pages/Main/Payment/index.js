@@ -34,7 +34,7 @@ const Payment = () => {
     }, [])
 
     const handlePay = () => {
-        dispatch((PostPay(dataTicketsPayment.data.price, setLoading, navigate, dataTicketsPayment.data.id)))
+        dispatch((PostPay(dataTicketsPayment.data.price, setLoading, navigate, dataTicketsPayment.data.id, tokenUser)))
     }
 
     console.log(dataTicketsPayment.data)
