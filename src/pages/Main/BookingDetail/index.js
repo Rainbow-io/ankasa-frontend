@@ -2,14 +2,13 @@
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 // import external modules
 import { GetBookingSuccess } from '../../../redux/actions/bookingSuccess';
 import './bookingdetail.css'
 
 const BookingDetail = () => {
-    const navigate = useNavigate();
     const dispatch = useDispatch();
     const { id } = useParams();
 
@@ -18,6 +17,7 @@ const BookingDetail = () => {
 
     useEffect(() => {
         dispatch((GetBookingSuccess(id)))
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
 

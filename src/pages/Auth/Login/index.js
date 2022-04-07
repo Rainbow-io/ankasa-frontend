@@ -67,7 +67,6 @@ const Login = () => {
     if (Object.keys(resultValidate).length === 0) {
       setFormLoginError(false)
       setLoading(true)
-      console.log(formLogin)
       dispatch((LoginUser(formLogin, setLoading, navigate)))
     }
   }

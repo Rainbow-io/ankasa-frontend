@@ -16,7 +16,6 @@ const ChatRoom = () => {
     const [chat, setChat] = useState([])
     const token = localStorage.getItem('token')
     const { username } = decodeToken(token)
-    console.log(username);
     const dispatch = useDispatch()
     const receiver = useSelector((state) => state.UserID)
     useEffect(() => {
@@ -75,7 +74,6 @@ const ChatRoom = () => {
             receiver: data.receiver,
             message: data.message
         }])
-        console.log(data);
     })
     // }, [])
 

@@ -1,10 +1,5 @@
 // import internal modules
 import axios from 'axios';
-import { decodeToken } from 'react-jwt';
-import { getUserID } from './userByID';
-
-const tokenUser = localStorage.getItem('token');
-const userInfo = decodeToken(tokenUser)
 
 export const PostPayRequest = () => {
     return {

@@ -20,20 +20,21 @@ export const getUserIDError = (error) => {
     }
 }
 
-export const getUserID = (id) => (dispatch) => {
-    dispatch(getUserIDRequest());
-    return axios({
-        method: 'GET',
-        url: `${process.env.REACT_APP_URL_BACKEND}/profile/${id}`,
-        headers: { Authorization: `Bearer ${token}` }
-    })
-        .then((res) => {
-            const data = res.data?.data[0];
-            console.log(res);
-            dispatch(getUserIDResponse(data));
+export const getUserID = (id) => {
+    return (dispatch) => {
+        dispatch(getUserIDRequest());
+        return axios({
+            method: 'GET',
+            url: `${process.env.REACT_APP_URL_BACKEND}/profile/${id}`,
+            headers: { Authorization: `Bearer ${token}` }
         })
-        .catch((err) => {
-            const message = err.message;
-            dispatch(getUserIDError(message));
-        });
+            .then((res) => {
+                const data = res.data?.data[0];
+                dispatch(getUserIDResponse(data));
+            })
+            .catch((err) => {
+                const message = err.message;
+                dispatch(getUserIDError(message));
+            });
+    }
 }

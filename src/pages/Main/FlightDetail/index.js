@@ -86,7 +86,6 @@ const FlightDetail = () => {
             setInsurance(0)
         }
     }
-    console.log(insurance);
     return (
         <div className=''>
             <div className={`${styles.bg}`}>
@@ -213,7 +212,7 @@ const FlightDetail = () => {
                                 <div className={`${styles.uline} d-flex px-5 justify-content-between py-3 form-check`}>
                                     <div className="check d-flex">
                                         <input className="form-check-input" type="checkbox" onChange={handleCheckbox} value="2" name="insurance" id="flexCheckIndeterminate" />
-                                        <label className="form-check-label" for="flexCheckIndeterminate">
+                                        <label className="form-check-label" htmlFor="flexCheckIndeterminate">
                                             <h6 className='ps-2'>Travel Insurance</h6>
                                         </label>
                                     </div>

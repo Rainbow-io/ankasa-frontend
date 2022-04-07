@@ -76,7 +76,6 @@ const ModalPic = ({ openModal }) => {
         if (resultValidate === undefined) {
             setFormPicError(false)
             setLoading(true)
-            console.log(formDataPic)
         }
     }
     return (

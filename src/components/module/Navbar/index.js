@@ -1,7 +1,6 @@
 import React, { useEffect, useContext } from 'react'
 import styles from './navbar.module.css'
 import Logo from '../../../assets/plane.svg'
-import Kucing from '../../../assets/kucinggarong.jpeg'
 import Input from '../Input'
 import { useNavigate } from 'react-router-dom'
 import socket from '../../../helpers/socket' //import socket
@@ -17,7 +16,6 @@ const Navbar = () => {
   //KALO BE UDAH PASANG SOCKET AKAN DI UNCOMMENT
   const token = localStorage.getItem('token')
   const {username} = decodeToken(token)
-  console.log(username);
   useEffect(()=>{
     if(token){
       socket.emit("User ID", username)

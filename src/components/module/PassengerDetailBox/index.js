@@ -5,7 +5,6 @@ import styles from './passengerdetail.module.css'
 
 const PassengerDetail = () => {
     const qty = localStorage.getItem('qty')
-    console.log('qty',qty);
     return (
         <div>
             <h4>Passenger Details</h4>

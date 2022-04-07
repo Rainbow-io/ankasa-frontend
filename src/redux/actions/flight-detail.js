@@ -28,8 +28,6 @@ export const getFlightDetail = (id) => (dispatch) => {
         .then((res) => {
             const data = res.data?.data;
             dispatch(getFlightDetailResponse(data));
-            // console.log('resssssssssssssssssssssssss',res)
-            // console.log('dataaaaaaaaaaaaaaaaaaaaaaaaaa',data)
         })
         .catch((err) => {
             const message = err.message;

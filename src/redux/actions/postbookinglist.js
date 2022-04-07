@@ -33,7 +33,6 @@ export const PostBooking = (formPassenger, navigate, token) => {
                 dispatch(PostBookingResponse(resultPostBooking))
                 alert("Success Add to Payment")
                 navigate("/main/my-booking")
-                console.log('BOOOOOOOOOOOOOOK',resultPostBooking);
             })
             .catch((err) => {
                 if (err.response !== undefined) {

@@ -20,7 +20,6 @@ const UserContext = ({ children }) => {
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  console.log(userDetailData)
   return (
     <userContext.Provider value={{ userPicture: userDetailData.data?.photo}}>
       {children}

@@ -37,8 +37,6 @@ const Payment = () => {
         dispatch((PostPay(dataTicketsPayment.data.price, setLoading, navigate, dataTicketsPayment.data.id, tokenUser)))
     }
 
-    console.log(dataTicketsPayment.data)
-
     return (
         <div className="body-background">
             <div className="d-md-flex px-5 py-5 wrapper-content">

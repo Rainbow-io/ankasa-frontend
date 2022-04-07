@@ -19,6 +19,7 @@ const MyBooking = () => {
 
     useEffect(() => {
         dispatch((GetBookingDetail()))
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     const handleNavigate = (status, idBooking) => {
@@ -32,8 +33,6 @@ const MyBooking = () => {
     const openModal = (param) => {
         setShowModalPic(param)
     }
-
-    console.log(dataTickets)
 
     return (
         <Fragment>

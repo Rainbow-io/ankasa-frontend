@@ -19,7 +19,6 @@ const FindTicket = () => {
     const [params, setParams] = useSearchParams()
     const handleSearch = () => {
         setParams(form)
-        console.log(params);
     }
 
     //batas handle params
@@ -44,14 +43,12 @@ const FindTicket = () => {
         depature_type: '',
         date: null
     })
-    console.log(token);
 
     const formFlight = []
     const navigate = useNavigate()
 
     const dispatch = useDispatch()
     const tickets = useSelector((state) => state.Flights)
-    console.log(tickets);
     //get all tickets
     useEffect(() => {
         dispatch(getFlights(form))
@@ -148,7 +145,6 @@ const FindTicket = () => {
             ...form,
             [e.target.name]: e.target.value
         })
-        console.log(form);
     }
 
     //transit
@@ -162,7 +158,6 @@ const FindTicket = () => {
         } else {
             setFacilities([])
         }
-        console.log(facilities);
     }
     const handleDropdownFacilities = () => {
         setShowRadio2(!showRadio2)
@@ -182,7 +177,6 @@ const FindTicket = () => {
         } else {
             setAirlines([])
         }
-        console.log(airlines);
     }
 
     return (

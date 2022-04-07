@@ -29,7 +29,6 @@ export const getUsers = () => (dispatch) => {
     })
         .then((res) => {
             const data = res.data?.data;
-            console.log(res);
             dispatch(getUsersResponse(data));
         })
         .catch((err) => {

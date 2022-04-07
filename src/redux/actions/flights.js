@@ -27,7 +27,6 @@ export const getFlights = (form) => (dispatch) => {
     })
         .then((res) => {
             const data = res.data?.data;
-            console.log(res);
             dispatch(getFlightsResponse(data));
             localStorage.setItem('qty', form.qty)
             // localStorage.setItem('date', form.date)
