@@ -36,7 +36,7 @@ export const LoginUser = (loginData, setLoading, navigate) => {
             const resultLogin = res.data?.message
             localStorage.setItem('token', tokenUser)
             dispatch(LoginUserResponse(resultLogin))
-            navigate("/main/explore")
+            window.location.replace("/main/explore")
         })
         .catch((err) => {
             setLoading(false)
